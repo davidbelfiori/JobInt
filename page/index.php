@@ -7,10 +7,10 @@ session_start();
 
 error_reporting(0);
 
-
 if (isset($_SESSION['username'])) {
-    header("Location: welcome.php");
+    header("Location: welcomeAzienda.php");
 }
+
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
 
@@ -23,7 +23,16 @@ if (isset($_POST['submit'])) {
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
-        header("Location: welcome.php");
+        $_SESSION['email']=$row['email'];
+        if($row['typeuser']=='lavoratore'){
+            header("location: welcomeLavoratore.php");
+
+        }else{
+            header("Location: welcomeAzienda.php");
+        }
+
+
+
     } else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
     }

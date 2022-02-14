@@ -21,23 +21,23 @@ if (isset($_POST['submit'])) {
     //confronto delle password(pw,cpw)
     if ($password == $cpassword) {
         //selezione delle email presenti nel database
-        $sql = "SELECT * FROM provaphplogin.user WHERE email='$email'";
+        $sql = "SELECT * FROM jobint.user WHERE email='$email' and username='$username'";
         $result = mysqli_query($conn, $sql);
         if (!$result->num_rows > 0) {
             //insrimento valori nel db
-            $sql = "INSERT INTO provaphplogin.user (username, email, password,typeuser)
+            $sql = "INSERT INTO jobint.user (username, email, password,typeuser)
 					VALUES ('$username', '$email', '$password','lavoratore')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 echo "<script>alert('Registrazione Completata')</script>";
-                header('location: ../index.php');
+                header('location: index.php');
                 exit;
 
             } else {
                 echo "<script>alert('Qualcosa è andato storto.')</script>";
             }
         } else {
-            echo "<script>alert('Email non disponibile.')</script>";
+            echo "<script>alert('Email o username non disponibile.')</script>";
         }
 
     } else {
