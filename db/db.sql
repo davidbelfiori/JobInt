@@ -1,3 +1,6 @@
+
+create schema jobint;
+
 create table user
 (
     iduser   int auto_increment
