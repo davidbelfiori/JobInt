@@ -1,0 +1,89 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.nav{
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:baseline;
+    margin-left: 150px;
+}
+.logo-container{
+    text-align: right;
+    width: 50%;
+}
+.title-container{
+    text-align: left;
+    width: 50%;
+}
+.title{
+    font-size: 45px;
+}
+.logo{
+    width: 50%;
+}
+.content{
+    margin-top: 25px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+.image-container{
+    width: 50%;
+    text-align: left;
+
+}
+.content-image{
+    width: 750px;
+    height: 100%;
+    margin-right: 100px;
+}
+.form-container{
+    text-align: center;
+    margin-left: 120px;
+}
+.form{
+    background-color: rgb(240, 240, 240);
+    border-radius: 30px;
+    width: 450px;
+    height: 400px;
+    text-align: center;
+}
+.input-group{
+    width: 400px;
+    margin-left: 20px;
+}
+input{
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 40px;
+    border-style: none;
+}
+.button{
+    margin-top: 20px;
+    width: 125px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: black;
+    border-style: none;
+}
+.text{
+    font-size: 12px;
+   font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif,
+}
+.button-a{
+    color: white;
+    text-decoration: none;
+}
+.text-a{
+    color: black;
+}
+
+
+
