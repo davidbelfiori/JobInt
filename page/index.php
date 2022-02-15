@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </form>
             <p>Non hai un account JobInt? <a href="regUserLavoratore.php">Lavoratore</a> <a href="reg1UA.php">Azienda</a></p>
-            <p>Hai dimenticato la password? <a href="#">Recupera</a></p>
+            <p>Hai dimenticato la password? <a href="forgot-password.php">Recupera</a></p>
         </div>
     </div>
 </div>
