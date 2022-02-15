@@ -31,10 +31,10 @@ if(isset($_POST['check-email'])){
                 $errors['otp-error'] = "Failed while sending code!";
             }
         }else{
-            $errors['db-error'] = "Something went wrong!";
+            $errors['db-error'] = "Qualcosa è andato stotro!";
         }
     }else{
-        $errors['email'] = "This email address does not exist!";
+        $errors['email'] = "Questa email non esiste!";
     }
 }
 
@@ -48,12 +48,12 @@ if(isset($_POST['check-reset-otp'])){
         $fetch_data = mysqli_fetch_assoc($code_res);
         $email = $fetch_data['email'];
         $_SESSION['email'] = $email;
-        $info = "Please create a new password that you don't use on any other site.";
+        $info = "Per favore crea una nuova password che non usi su nessun altro sito.";
         $_SESSION['info'] = $info;
         header('location: new-password.php');
         exit();
     }else{
-        $errors['otp-error'] = "You've entered incorrect code!";
+        $errors['otp-error'] = "Hai inserito un codice errato!";
     }
 }
 
@@ -63,7 +63,7 @@ if(isset($_POST['change-password'])){
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
     if($password !== $cpassword){
-        $errors['password'] = "Confirm password not matched!";
+        $errors['password'] = "Le password non corrispondono!";
     }else{
         $code = 0;
         $email = $_SESSION['email']; //getting this email using session
@@ -71,11 +71,11 @@ if(isset($_POST['change-password'])){
         $update_pass = "UPDATE user SET code = $code, password = '$encpass' WHERE email = '$email'";
         $run_query = mysqli_query($conn, $update_pass);
         if($run_query){
-            $info = "Your password changed. Now you can login with your new password.";
+            $info = "La tua password è cambiata. Ora puoi accedere con la tua nuova password.";
             $_SESSION['info'] = $info;
             header('Location: password-changed.php');
         }else{
-            $errors['db-error'] = "Failed to change your password!";
+            $errors['db-error'] = "Impossibile modificare la password!";
         }
     }
 }
