@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 
             $result2 = mysqli_query($conn, $sql2);
             $result3 = mysqli_query($conn, $sql3);
-            if ($result) {
+            if ($result and $result2 and $result3) {
                 echo "<script> alert('registrazione completata')</script>";
                 header("location: index.php");
                 exit;

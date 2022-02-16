@@ -1,7 +1,7 @@
 
 <?php
 //richiamo del file con la conf. del db
-include '../db/config.php';
+/*include '../db/config.php';
 
 error_reporting(0);
 
@@ -43,6 +43,30 @@ if (isset($_POST['submit'])) {
     } else {
         echo "<script>alert('Le password non corrispondono.')</script>";
     }
+
+
+
+
+}*/
+
+
+session_start();
+
+if (isset($_POST['submit'])){
+    foreach ($_POST as $key =>$value){
+        $_SESSION['info'][$key]=$value;
+    }
+
+    $keys= array_keys($_SESSION['info']);
+
+    if(in_array('submit',$keys)){
+        unset($_SESSION['info']['submit']);
+    }
+    header("Location: regUserLavoratore2.php" );
+
+
+
+
 }
 
 ?>
