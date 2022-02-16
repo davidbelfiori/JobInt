@@ -1,6 +1,3 @@
-
-create schema jobint;
-
 create table user
 (
     iduser   int auto_increment
@@ -9,6 +6,7 @@ create table user
     email    varchar(100)                   not null,
     password varchar(100)                   not null,
     typeuser enum ('lavoratore', 'azienda') not null,
+    code     mediumint default 0            not null,
     constraint user_username_uindex
         unique (username),
     constraint users_email_uindex
@@ -83,10 +81,10 @@ create table professione
 (
     idprofessione     int auto_increment
         primary key,
-    areaprofessionale text not null,
-    sottoarea         text not null,
-    categoria         text not null,
-    idlavoratore1     int  not null,
+    areaprofessionale varchar(255) not null,
+    sottoarea         varchar(255) not null,
+    categoria         varchar(255) not null,
+    idlavoratore1     int          not null,
     constraint professione_lavoratore_idlavoratore_fk
         foreign key (idlavoratore1) references lavoratore (idlavoratore)
             on update cascade on delete cascade
