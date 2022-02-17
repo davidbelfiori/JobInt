@@ -13,7 +13,6 @@ if (isset($_SESSION['username'])) {
 
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
-
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
@@ -24,15 +23,11 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
         $_SESSION['email']=$row['email'];
-        if($row['typeuser']=='lavoratore'){
+        if ($row['typeuser']=='lavoratore') {
             header("location: welcomeLavoratore.php");
-
-        }else{
+        } else {
             header("Location: welcomeAzienda.php");
         }
-
-
-
     } else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
     }
