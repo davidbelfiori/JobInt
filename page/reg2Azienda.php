@@ -5,62 +5,61 @@ include '../db/config.php';
 session_start();
 error_reporting(0);
 
-if(isset($_SESSION['info'])){
+if (isset($_SESSION['info'])) {
     extract($_SESSION['info']);
 
 
 
-if (isset($_POST['submit'])) {
-    //inserimento delle variabili
+    if (isset($_POST['submit'])) {
+        //inserimento delle variabili
 
-    $pw=md5($password);
-    $cpw=md5($cpassword);
-    $nomeAzienda=$_POST['nomeAzienda'];
-    $nsedi=$_POST['nsedi'];
-    $settore=$_POST['settore'];
-    $ndipendenti=$_POST['ndipendenti'];
-    $luogosedi=$_POST['luogosedi'];
-    $codiceAteco=$_POST['codiceAteco'];
+        $pw=md5($password);
+        $cpw=md5($cpassword);
+        $nomeAzienda=$_POST['nomeAzienda'];
+        $nsedi=$_POST['nsedi'];
+        $settore=$_POST['settore'];
+        $ndipendenti=$_POST['ndipendenti'];
+        $luogosedi=$_POST['luogosedi'];
+        $codiceAteco=$_POST['codiceAteco'];
 
-    //confronto delle password(pw,cpw)
+        //confronto delle password(pw,cpw)
 
-    if($password == $cpassword){
-
-        $sql = "SELECT * FROM jobint.user WHERE email='$email' and username='$username'" ;
-        $result = mysqli_query($conn, $sql);
-        if(!$result->num_rows > 0){
-            $sql = "
-            insert into jobint.user (email, password, typeuser, username) values ('$email','$pw','azienda','$username');";
+        if ($password == $cpassword) {
+            $sql = "SELECT * FROM jobint.user WHERE email='$email' and username='$username'" ;
             $result = mysqli_query($conn, $sql);
+            if (!$result->num_rows > 0) {
+                $sql = "
+            insert into jobint.user (email, password, typeuser, username) values ('$email','$pw','azienda','$username');";
+                $result = mysqli_query($conn, $sql);
 
-            $sql="select * from jobint.azienda where nomeAzienda='$nomeAzienda'";
-            $result= mysqli_query($conn,$sql);
-            if(!$result->num_rows >0){
-
-
-            $sql2 = "insert into jobint.azienda (nomeAzienda, numeroSedi, numeroDipendenti, luogoSedi, idUser1)
+                $sql="select * from jobint.azienda where nomeAzienda='$nomeAzienda'";
+                $result= mysqli_query($conn, $sql);
+                if (!$result->num_rows >0) {
+                    $sql2 = "insert into jobint.azienda (nomeAzienda, numeroSedi, numeroDipendenti, luogoSedi, idUser1)
             values ('$nomeAzienda', '$nsedi' , '$ndipendenti' ,'$luogosedi',(select iduser from user where email='$email'));";
-            $sql3 = "insert into jobint.ateco (idCodiceATECO,codiceATECO, settore)
+                    $sql3 = "insert into jobint.ateco (idCodiceATECO,codiceATECO, settore)
             values ((select idAzienda from azienda where nomeAzienda='$nomeAzienda'),'$codiceAteco','$settore');";
 
-            $result2 = mysqli_query($conn, $sql2);
-            $result3 = mysqli_query($conn, $sql3);
-            if ($result and $result2 and $result3) {
-                echo "<script> alert('registrazione completata')</script>";
-                header("location: index.php");
-                exit;
+                    $result2 = mysqli_query($conn, $sql2);
+                    $result3 = mysqli_query($conn, $sql3);
+                    if ($result and $result2 and $result3) {
+                        echo "<script> alert('registrazione completata')</script>";
+                        header("location: index.php");
+                        exit;
+                    } else {
+                        echo mysqli_error($conn);
+                        echo "<script>alert('Qualcosa è andato storto.')</script>";
+                    }
+                } else {
+                    echo "<script>alert('Email o username non disponibile.')</script>";
+                }
             } else {
-                echo mysqli_error($conn);
-                echo "<script>alert('Qualcosa è andato storto.')</script>";
+                echo "<script>alert('Email o username non disponibile.')</script>";
             }
-
         } else {
-            echo "<script>alert('Email o username non disponibile.')</script>";}
-
-        }else{  echo "<script>alert('Email o username non disponibile.')</script>"; }
-            }else{
-            echo"<script> alert('le password non corrispondono')</script>";}
-}
+            echo"<script> alert('le password non corrispondono')</script>";
+        }
+    }
 }
 
 
