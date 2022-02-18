@@ -62,7 +62,7 @@ if (isset($_POST['submit'])){
     if(in_array('submit',$keys)){
         unset($_SESSION['info']['submit']);
     }
-    header("Location: regUserLavoratore2.php" );
+    header("Location:regUserLavoratore2.php" );
 
 
 
