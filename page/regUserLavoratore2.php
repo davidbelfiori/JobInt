@@ -32,6 +32,21 @@ if(isset($_POST['submit'])){
     $categoriaProfessionale=$_POST['Categoria_professionale'];
     $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
 
+
+    if($pw==$cpw){
+
+        $sql="select * from jobint.user where email='$email' and username='$username'";
+        $result=mysqli_query($conn,$sql);
+        if(!$result -> num_rows > 0){
+
+        $sql="select * from jobint.lavoratore where codicefiscale='$cf'";
+        $result=mysqli_query($conn,$sql);
+        if( !$result -> num_rows > 0 ){
+
+            $sql="select * from jobint.lavoratore where tel='$ceell'";
+            $result=mysqli_query($conn,$sql);
+           if(!$result->num_rows > 0){
+
     $sql="insert into jobint.user (email, password, typeuser, username) values ('$email','$pw','Lavoratore','$username');";
     $res=mysqli_query($conn,$sql);
 
@@ -39,21 +54,32 @@ if(isset($_POST['submit'])){
     $res=mysqli_query($conn,$sql2);
 
     $sql3=" insert into indirizzo (qualificatore, nomevia, ncivico, cap, comune, provincia, citta, idlavoratore1) 
- values  ('$qualificatore','$indirizzo','$numeroCivico', '$CAP' ,'$comune','$provincia','$citta',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
+     values  ('$qualificatore','$indirizzo','$numeroCivico', '$CAP' ,'$comune','$provincia','$citta',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
    $res=mysqli_query($conn,$sql3);
 
    $sql4="insert into professione (areaprofessionale, sottoarea, categoria, idlavoratore1) VALUES ('$areaProfessionale','$sottoAreaProfessionale','$categoriaProfessionale',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
     $res=mysqli_query($conn,$sql4);
-  if ($res) {
-      echo "<script> alert('registrazione completata')</script>";
-      header("location: index.php");
-      exit;
-  } else {
-      echo mysqli_error($conn);
-      echo "<script>alert('Qualcosa è andato storto.')</script>";
-  }
-}
-}
+          if ($res) {
+              echo "<script> alert('registrazione completata')</script>";
+              header("location: index.php");
+              exit;
+          } else {
+              echo mysqli_error($conn);
+              echo "<script>alert('Qualcosa è andato storto.')</script>";
+          }
+           }else{
+           echo "<script>alert('numero di telefono gia inserito')</script>"; }
+                     }else{
+                             echo "<script>alert('Codice fiscale errato o gia inserito')</script>";}
+
+
+                             }else{ echo  "<script>alert('username or email already used')</script>";  }
+
+
+                                }else{
+                                         echo "<script>alert('le password non corrispondono.')</script>";}
+                                                            }
+                                                                }
 
 
 ?>
@@ -96,7 +122,7 @@ if(isset($_POST['submit'])){
 </label><br><br>
 <label for="cf">
     Codice fiscale <br>
-    <input type="text" placeholder="Codice fiscale" name="cf" required>
+    <input type="text" placeholder="Codice fiscale" name="cf"  maxlength="16" minlength="16"  required>
 </label>
 <br><br>
 Qualificatore <br>
@@ -138,7 +164,7 @@ Qualificatore <br>
     <br><br>
 <label for="numero civico">
     Numero cellulare <br>
-    <input type="text" name="numeroCellulare" placeholder="Numero cellulare" required>
+    <input type="text" name="numeroCellulare" placeholder="Numero cellulare" maxlength="10" required>
 </label>
 <br><br>
 <label for="">
