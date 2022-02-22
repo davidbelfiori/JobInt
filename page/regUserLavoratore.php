@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
         if (!$result->num_rows > 0) {
             //insrimento valori nel db
             $sql = "INSERT INTO jobint.user (username, email, password,typeuser)
-					VALUES ('$username', '$email', '$password','lavoratore')";
+                    VALUES ('$username', '$email', '$password','lavoratore')";
             $result = mysqli_query($conn, $sql);
             if ($result) {
                 echo "<script>alert('Registrazione Completata')</script>";
@@ -52,21 +52,17 @@ if (isset($_POST['submit'])) {
 
 session_start();
 
-if (isset($_POST['submit'])){
-    foreach ($_POST as $key =>$value){
+if (isset($_POST['submit'])) {
+    foreach ($_POST as $key =>$value) {
         $_SESSION['info'][$key]=$value;
     }
 
     $keys= array_keys($_SESSION['info']);
 
-    if(in_array('submit',$keys)){
+    if (in_array('submit', $keys)) {
         unset($_SESSION['info']['submit']);
     }
-    header("Location:regUserLavoratore2.php" );
-
-
-
-
+    header("Location:regUserLavoratore2.php");
 }
 
 ?>
