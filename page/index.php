@@ -25,6 +25,10 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['email']=$row['email'];
         if($row['typeuser']=='lavoratore'){
+
+
+
+
             header("location: welcomeLavoratore.php");
 
         }else{
