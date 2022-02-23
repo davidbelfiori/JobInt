@@ -19,7 +19,7 @@ and lavoratore.idlavoratore=curriculum.idLavoratore1
 and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore
 ";
-$res = mysqli_query($conn,$sql);
+$res = mysqli_query($conn, $sql);
 
 
 
