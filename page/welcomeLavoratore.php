@@ -2,9 +2,27 @@
 
 session_start();
 
+include "../db/config.php";
+
 if (!isset($_SESSION['username'],$_SESSION['email'])) {
     header("Location: index.php");
 }
+
+$username = $_SESSION['username'];
+$email= $_SESSION['email'];
+
+$sql="select * from user,user_image,curriculum,lavoratore,professione,indirizzo
+where user.username='$username' and user.email='$username'
+and user.iduser=lavoratore.idUser1
+and user_image.idUser1=user.iduser
+and lavoratore.idlavoratore=curriculum.idLavoratore1
+and indirizzo.idlavoratore1=lavoratore.idlavoratore
+and professione.idlavoratore1=lavoratore.idlavoratore
+";
+$res = mysqli_query($conn,$sql);
+
+
+
 
 ?>
 

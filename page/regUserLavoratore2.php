@@ -55,7 +55,7 @@ if(isset($_POST['submit'])){
 
            if(!$result->num_rows > 0){
 
-               if($img_size<500000){
+               if($img_size<5000000){
 
                    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                    $img_ex_lc = strtolower($img_ex);
@@ -63,7 +63,7 @@ if(isset($_POST['submit'])){
 
                    if (in_array($img_ex_lc, $allowed_exs)) {
                        $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
-                       $img_upload_path = 'uploads/' . $new_img_name;
+                       $img_upload_path = 'uploads/userimage/' . $new_img_name;
                        move_uploaded_file($tmp_name, $img_upload_path);
 
                        if($curriculum_size<500000){
@@ -73,8 +73,8 @@ if(isset($_POST['submit'])){
 
                            if(in_array($curr_ex_lc,$allowed_exs1)){
                                $new_curr_name = uniqid("CURRICULUM-", true) . '.' . $curr_ex_lc;
-                               $curr_upload_path = '../curriculum/' . $new_curr_name;
-                               move_uploaded_file($tmp_name, $curr_upload_path);
+                               $curr_upload_path = 'uploads/curriculum/' . $new_curr_name;
+                               move_uploaded_file($tmp_name1, $curr_upload_path);
 
 
                                $sql = "insert into jobint.user (email, password, typeuser, username) values ('$email','$pw','Lavoratore','$username');";
@@ -142,9 +142,7 @@ if(isset($_POST['submit'])){
 <form action="regUserLavoratore2.php" method="post" enctype="multipart/form-data">
 
 
-    <label>
-        <input type="file" name="my_image" placeholder="user image">
-    </label> <br> <br>
+
 <h3>Dati personali</h3><br>
 <label for="Nome">
     Nome <br>
@@ -238,7 +236,12 @@ Qualificatore <br>
     <br>
     <br>
     <label>
+        curriculum
         <input type="file" name="curriculum" placeholder="user image">
+    </label> <br> <br>
+    <label>
+        user image
+        <input type="file" name="my_image" placeholder="user image">
     </label> <br> <br>
 
 <button class="button" type="submit" name="submit"><a class="button-a">Registrati</a></button>

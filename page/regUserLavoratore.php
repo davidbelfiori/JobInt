@@ -1,54 +1,5 @@
 
 <?php
-//richiamo del file con la conf. del db
-/*include '../db/config.php';
-
-error_reporting(0);
-
-session_start();
-
-if (isset($_SESSION['username'])) {
-    header("Location: index.php");
-}
-
-if (isset($_POST['submit'])) {
-    //inserimento delle variabili
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = md5($_POST['password']);
-    $cpassword = md5($_POST['cpassword']);
-
-    //confronto delle password(pw,cpw)
-    if ($password == $cpassword) {
-        //selezione delle email presenti nel database
-        $sql = "SELECT * FROM jobint.user WHERE email='$email' and username='$username'";
-        $result = mysqli_query($conn, $sql);
-        if (!$result->num_rows > 0) {
-            //insrimento valori nel db
-            $sql = "INSERT INTO jobint.user (username, email, password,typeuser)
-					VALUES ('$username', '$email', '$password','lavoratore')";
-            $result = mysqli_query($conn, $sql);
-            if ($result) {
-                echo "<script>alert('Registrazione Completata')</script>";
-                header('location: index.php');
-                exit;
-
-            } else {
-                echo "<script>alert('Qualcosa è andato storto.')</script>";
-            }
-        } else {
-            echo "<script>alert('Email o username non disponibile.')</script>";
-        }
-
-    } else {
-        echo "<script>alert('Le password non corrispondono.')</script>";
-    }
-
-
-
-
-}*/
-
 
 session_start();
 
