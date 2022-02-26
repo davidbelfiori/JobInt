@@ -128,6 +128,7 @@ if (isset($_POST['submit'])) {
                     <p>Codice ATECO</p>
                     <input type="text" name="codiceATECO">
                 </div>
+
                 <div class="button">
                     <button type="submit" name="submit">Registrati</button>
                 </div>

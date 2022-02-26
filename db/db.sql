@@ -24,7 +24,7 @@ create table azienda
     idUser1          int          not null,
     constraint azienda_users_id_fk
         foreign key (idUser1) references user (iduser)
-            on update cascade
+            on update cascade on delete cascade
 );
 
 create table ateco
@@ -35,7 +35,7 @@ create table ateco
     settore       varchar(255) not null,
     constraint ateco_azienda_idAzienda_fk
         foreign key (idCodiceATECO) references azienda (idAzienda)
-            on update cascade
+            on update cascade on delete cascade
 );
 
 create table lavoratore
@@ -55,6 +55,17 @@ create table lavoratore
         unique (tel),
     constraint lavoratore_user_iduser_fk
         foreign key (idUser1) references user (iduser)
+            on update cascade on delete cascade
+);
+
+create table curriculum
+(
+    idCurriculum  int auto_increment
+        primary key,
+    pdf_url       text not null,
+    idLavoratore1 int  not null,
+    constraint curriculum_lavoratore_idlavoratore_fk
+        foreign key (idLavoratore1) references lavoratore (idlavoratore)
             on update cascade on delete cascade
 );
 
@@ -87,6 +98,17 @@ create table professione
     idlavoratore1     int          not null,
     constraint professione_lavoratore_idlavoratore_fk
         foreign key (idlavoratore1) references lavoratore (idlavoratore)
+            on update cascade on delete cascade
+);
+
+create table user_image
+(
+    idImage   int auto_increment
+        primary key,
+    image_url text not null,
+    idUser1   int  not null,
+    constraint user_image_user_iduser_fk
+        foreign key (idUser1) references user (iduser)
             on update cascade on delete cascade
 );
 

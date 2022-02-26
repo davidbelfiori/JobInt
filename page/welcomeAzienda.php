@@ -1,11 +1,10 @@
 <?php
 
 session_start();
-
+include "../db/config.php";
 if (!isset($_SESSION['username'],$_SESSION['email'])) {
     header("Location: index.php");
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +15,30 @@ if (!isset($_SESSION['username'],$_SESSION['email'])) {
     <title>JobInt Azienda</title>
 </head>
 <body>
-<?php echo "<h1>Welcome " . $_SESSION['username'] ."</h1>"; ?>
-<?php echo "<h1>la tua email è: " . $_SESSION['email'] ."</h1>"; ?>
+<?php
+
+$username = $_SESSION['username'];
+$email= $_SESSION['email'];
+
+$sql= "select * from user,azienda,ateco
+where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='$username' and email='$email'";
+$result = mysqli_query($conn, $sql);
+$resultcheck=mysqli_num_rows($result);
+if($resultcheck > 0){
+    while($row=mysqli_fetch_assoc($result)){
+        ?>
+
+        <H1> Benvenuta Azienda: id. <?= $row['iduser'] ?> </H1>
+        Nome Azienda: <?= $row['nomeAzienda'] ?><br>
+        N. dipendenti: <?= $row['numeroDipendenti'] ?><br>
+        Settore: <?= $row['settore'] ?><br>
+        Sedi: <?= $row['luogoSedi'] ?><br>
+
+
+
+  <?php  } }?>
+
+
 <a href="logout.php">Logout</a>
 </body>
 </html>
