@@ -134,6 +134,7 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>registrazione Lavoratore</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -173,7 +174,7 @@ if(isset($_POST['submit'])){
 <br><br>
 Qualificatore <br>
 <select  name="qualificatore" aria-label="Default select example">
-  <option selected></option>
+  <option selected disabled>Via|Piazza|Largo</option>
   <option value="via">Via</option>
   <option value="piazza">Piazza</option>
   <option value="largo">Largo</option>
@@ -213,26 +214,37 @@ Qualificatore <br>
     <input type="text" name="numeroCellulare" placeholder="Numero cellulare" maxlength="10" required>
 </label>
 <br><br>
-<label for="">
-    Area professionale <br>
-<select name="Area_professionale" id="" required >
-    <option selected>/option>
-    <option value="it e digital"> it e digital</option>
-</select><br><br>
-<label for="">
-   Sotto-area professionale <br>
-<select name="Sotto_area_professionale" id="" required>
-    <option selected></option>
-    <option value="Analisi | sviluppo | web">Analisi | sviluppo | web</option>
-</select>
-</label><br><br>
-<label for="">
-   Categoria Professionale <br>
-<select name="Categoria_professionale" id="" required>
-    <option selected></option>
-    <option value="Programmatore Java"> Programmatore Java</option>
-    <option value="Programmatore Php">Programmatore Php</option>
-</select>
+
+    <?php
+    // $con = mysqli_connect("localhost", "admin", "admin", "countrydb");
+    $area = '';
+    $query = "SELECT area FROM categoriaprofessionale GROUP BY area ORDER BY area ASC";
+    $result = mysqli_query($conn, $query);
+    while($row = mysqli_fetch_array($result))
+    {
+        $area .= '<option value="'.$row["area"].'">'.$row["area"].'</option>';
+    }
+    ?>
+    <label for="">
+        Area professionale <br>
+        <select name="Area_professionale" id="Area_professionale"  class="form-control action" required >
+            <option selected disabled>Area Professionale</option>
+            <?php echo $area; ?>
+        </select><br><br>
+        <label for="">
+            Sotto-area professionale <br>
+            <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" required>
+                <option selected disabled></option>
+
+            </select>
+        </label><br><br>
+        <label for="">
+            Categoria Professionale <br>
+            <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" required>
+                <option selected disabled></option>
+
+            </select>
+
     <br>
     <br>
     <label>
@@ -248,4 +260,34 @@ Qualificatore <br>
 </form>
 </div>
 </body>
+
+
 </html>
+<script>
+    $(document).ready(function(){
+        $('.action').change(function(){
+            if($(this).val() != '')
+            {
+                var action = $(this).attr("id");
+                var query = $(this).val();
+                var result = '';
+                if(action == "Area_professionale")
+                {
+                    result = 'Sotto_area_professionale';
+                }
+                else
+                {
+                    result = 'Categoria_professionale';
+                }
+                $.ajax({
+                    url:"fetchdata.php",
+                    method:"POST",
+                    data:{action:action, query:query},
+                    success:function(data){
+                        $('#'+result).html(data);
+                    }
+                })
+            }
+        });
+    });
+</script>

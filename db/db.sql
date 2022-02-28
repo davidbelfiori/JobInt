@@ -112,3 +112,30 @@ create table user_image
             on update cascade on delete cascade
 );
 
+create table categoriaprofessionale
+(
+    idprofessione int auto_increment
+        primary key,
+    area          varchar(150) not null,
+    sotto_area    varchar(150) null,
+    categoria     varchar(150) null
+);
+
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Analista Programmatore');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Analista software');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Programmatore .Net');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Programmatore C/C++');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Programmatore java');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Programmatore PHP');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Programmatore SQL');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Sviluppatore di applicazioni per dispositivi mobili');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'UX/UI Designer');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Help Desk/ Assistenza Informatica', 'Help Desk 2nd line specialist');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Help Desk/ Assistenza Informatica', 'ICT help desk agent');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Help Desk/ Assistenza Informatica', 'ICT help desk manager ');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Infrastruttura IT/ DBA', 'Amministratore del database');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Infrastruttura IT/ DBA', 'Amministratore rete informatica');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Infrastruttura IT/ DBA', 'Cloud specialist');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Infrastruttura IT/ DBA', 'System engenieer junior');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Infrastruttura IT/ DBA', 'System engenieer senior');
+INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Infrastruttura IT/ DBA', 'Responsabile della sicurezza TIC');
