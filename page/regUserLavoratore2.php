@@ -172,6 +172,8 @@ if(isset($_POST['submit'])){
     <input type="text" placeholder="Codice fiscale" name="cf"  maxlength="16" minlength="16"  required>
 </label>
 <br><br>
+    <h3> Dati di Contatto</h3>
+    <br>
 Qualificatore <br>
 <select  name="qualificatore" aria-label="Default select example">
   <option selected disabled>Via|Piazza|Largo</option>
@@ -214,7 +216,7 @@ Qualificatore <br>
     <input type="text" name="numeroCellulare" placeholder="Numero cellulare" maxlength="10" required>
 </label>
 <br><br>
-
+<h3> Professioni D'interesse</h3>
     <?php
     // $con = mysqli_connect("localhost", "admin", "admin", "countrydb");
     $area = '';
@@ -230,29 +232,29 @@ Qualificatore <br>
         <select name="Area_professionale" id="Area_professionale"  class="form-control action" required >
             <option selected disabled>Area Professionale</option>
             <?php echo $area; ?>
-        </select><br><br>
+        </select><br>
         <label for="">
             Sotto-area professionale <br>
             <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" required>
-                <option selected disabled></option>
+                <option selected disabled>Sotto Area professionale</option>
 
             </select>
         </label><br><br>
         <label for="">
             Categoria Professionale <br>
             <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" required>
-                <option selected disabled></option>
+                <option selected disabled>Categoria professionale</option>
 
             </select>
 
     <br>
-    <br>
+
     <label>
-        curriculum
+        Curriculum <br>
         <input type="file" name="curriculum" placeholder="user image" accept="application/pdf" required>
-    </label> <br> <br>
+    </label> <br>
     <label>
-        user image
+        Immagine Profilo <br>
         <input type="file" name="my_image" placeholder="user image" required>
     </label> <br> <br>
 
