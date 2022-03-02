@@ -38,23 +38,30 @@ $rescheck= mysqli_num_rows($res);
 
 if($rescheck>0){
     while ($row = mysqli_fetch_assoc($res)){
+        if(isset($_POST['view_pdf'])){
+            $file_name=$row['pdf_url'];
 
+            header("content-type: application/pdf");
+            readfile("uploads/curriculum/$file_name");
+        }
 
         ?>
         <div class="user-image">
         <img src="uploads/userimage/<?=$row['image_url']?>">
         </div>
 
-        <h1>Benvenuto Lavoratore: id.<?= $row['iduser'] ?> </h1>
-        <h2>Nome: <?= $row['nome'] ?> </h2>
-       <h2> Cognome: <?= $row['cognome'] ?></h2>
+        <h3>Benvenuto  <?= $row['nome'] ?> <?= $row['cognome'] ?> </h3>
         Sesso: <?= $row['sesso'] ?> <br>
         Data di Nascita: <?= $row['dob'] ?> <br>
         Città: <?= $row['citta'] ?> <br>
         Professione: <?= $row['areaprofessionale'] ?> <br>
         Sotto-area: <?= $row['sottoarea'] ?> <br>
         Categoria: <?= $row['categoria'] ?> <br>
-        <button><a href="uploads/curriculum/<?= $row['pdf_url']?>">pfd</a></button>
+
+            <form action="" method="post">
+        <button name="view_pdf">Curriculum</button>
+            </form>
+
         <br>
 
     <?php }} ?>
