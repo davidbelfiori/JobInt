@@ -31,7 +31,14 @@ and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore
  */
 
+/*
 select * from user,azienda,ateco
 where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='netflix' and email='netflix@email.com'
 
+ */
 
+select * from professione,user,user_image,curriculum,lavoratore
+where user.iduser=lavoratore.idUser1
+and user_image.idUser1=user.iduser
+and lavoratore.idlavoratore=curriculum.idLavoratore1
+and professione.idlavoratore1=lavoratore.idlavoratore and professione.areaprofessionale='it e digital' and professione.sottoarea='Analisi | sviluppo | web' and categoria='Programmatore Java';

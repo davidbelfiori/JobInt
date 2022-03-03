@@ -28,7 +28,7 @@ if($resultcheck > 0){
     while($row=mysqli_fetch_assoc($result)){
         ?>
 
-        <H1> Benvenuta Azienda: id. <?= $row['iduser'] ?> </H1>
+        <h3> Benvenuta Azienda: id. <?= $row['iduser'] ?> </h3>
         Nome Azienda: <?= $row['nomeAzienda'] ?><br>
         N. dipendenti: <?= $row['numeroDipendenti'] ?><br>
         Settore: <?= $row['settore'] ?><br>
@@ -38,7 +38,8 @@ if($resultcheck > 0){
 
   <?php  } }?>
 
-
-<a href="logout.php">Logout</a>
+<h5>Hai bisogno di personale?</h5>
+<button><a href="ricercaLavoratore.php">Cerca</a></button> <br><br>
+<button ><a href="logout.php" style="text-decoration: none">Logout</a></button>
 </body>
 </html>

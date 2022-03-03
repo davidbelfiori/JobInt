@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
 
 
-            header("location: welcomeLavoratore.php");
+            header("location: welcomeLavoratoreHome.php");
 
         }else{
             header("Location: welcomeAzienda.php");
