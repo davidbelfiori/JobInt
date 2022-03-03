@@ -13,9 +13,9 @@ if (isset($_POST['cerca'])){
             where user.iduser=lavoratore.idUser1
             and user_image.idUser1=user.iduser
             and lavoratore.idlavoratore=curriculum.idLavoratore1
-            and professione.idlavoratore1=lavoratore.idlavoratore 
-            and professione.areaprofessionale='$areaProfessionale' 
-            and professione.sottoarea='$sottoAreaProfessionale' 
+            and professione.idlavoratore1=lavoratore.idlavoratore
+            and professione.areaprofessionale='$areaProfessionale'
+            and professione.sottoarea='$sottoAreaProfessionale'
             and categoria='$categoriaProfessionale'";
 
     $result = mysqli_query($conn, $sql);
@@ -54,8 +54,7 @@ if (isset($_POST['cerca'])){
 $area = '';
 $query = "SELECT area FROM categoriaprofessionale GROUP BY area ORDER BY area ASC";
 $result = mysqli_query($conn, $query);
-while($row = mysqli_fetch_array($result))
-{
+while ($row = mysqli_fetch_array($result)) {
     $area .= '<option value="'.$row["area"].'">'.$row["area"].'</option>';
 }
 ?>
@@ -84,13 +83,12 @@ while($row = mysqli_fetch_array($result))
 <br>
         <a href="welcomeAzienda.php" style="text-decoration: none">Home</a>
     <?php
-    if (isset($_POST['cerca'])){
+    if (isset($_POST['cerca'])) {
+        $areaProfessionale=$_POST['Area_professionale'];
+        $categoriaProfessionale=$_POST['Categoria_professionale'];
+        $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
 
-    $areaProfessionale=$_POST['Area_professionale'];
-    $categoriaProfessionale=$_POST['Categoria_professionale'];
-    $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
-
-    $sql="select * from professione,user,user_image,curriculum,lavoratore
+        $sql="select * from professione,user,user_image,curriculum,lavoratore
     where user.iduser=lavoratore.idUser1
     and user_image.idUser1=user.iduser
     and lavoratore.idlavoratore=curriculum.idLavoratore1
@@ -99,23 +97,21 @@ while($row = mysqli_fetch_array($result))
     and professione.sottoarea='$sottoAreaProfessionale'
     and categoria='$categoriaProfessionale'";
 
-    $result = mysqli_query($conn, $sql);
-    $queryResult=mysqli_num_rows($result);
-    if($queryResult>0){
-    while($row = mysqli_fetch_assoc($result))
-    {
-
-   echo "<div> 
+        $result = mysqli_query($conn, $sql);
+        $queryResult=mysqli_num_rows($result);
+        if ($queryResult>0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<div> 
         &ensp;
         <h3>".$row["nome"]. " " .$row["cognome"]."</h3> 
         
          <p>".$row['areaprofessionale']."  &ensp;     ".$row['sottoarea']."   &ensp;      ".$row['categoria']."</p>
         
         </div>";
-    }
-
-    }else{
-        echo "nessun lavoratore trovato";}
+            }
+        } else {
+            echo "nessun lavoratore trovato";
+        }
     }?>
 </div>
         </body>
