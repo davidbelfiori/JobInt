@@ -2,6 +2,8 @@
 
 session_start();
 include "../db/config.php";
+
+
 ?>
 <html lang="en">
 <head>
@@ -74,12 +76,13 @@ while($row = mysqli_fetch_array($result))
             if ($queryResult1 > 0) {
                 while ($row = mysqli_fetch_assoc($result1)) {
 
+
                     echo "<div> 
         &ensp;
         <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
-        
+        <button> <a href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
         </div>";
                 }
 
@@ -109,8 +112,10 @@ while($row = mysqli_fetch_array($result))
         <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
-        
-        </div>";
+        <form action='' method='post'>
+         <button name='dettagli'>dettagli</button>
+        </form>
+         </div>";
                 }
 
             }
@@ -140,13 +145,15 @@ while($row = mysqli_fetch_array($result))
         <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
-        
+      <form action='' method='post'>
+         <button name='dettagli'>dettagli</button>
+        </form>
         </div>";
                 }
 
             }
         }
-       
+
 
     }?>
 </div>

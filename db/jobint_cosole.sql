@@ -22,23 +22,28 @@ values ('it e digital','sviluppo','programmatore java',(select idlavoratore from
 commit ;
 */
 /* select informazioni lato lavoratore
+
+ */
 select * from user,user_image,curriculum,lavoratore,professione,indirizzo
-where user.username='davidbelfiori' and user.email='davidjulian2003@gmail.com'
+where lavoratore.idlavoratore='35'
 and user.iduser=lavoratore.idUser1
 and user_image.idUser1=user.iduser
 and lavoratore.idlavoratore=curriculum.idLavoratore1
 and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore
- */
+
 
 /*
 select * from user,azienda,ateco
 where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='netflix' and email='netflix@email.com'
 
  */
+/*
 
 select * from professione,user,user_image,curriculum,lavoratore
 where user.iduser=lavoratore.idUser1
 and user_image.idUser1=user.iduser
 and lavoratore.idlavoratore=curriculum.idLavoratore1
 and professione.idlavoratore1=lavoratore.idlavoratore and professione.areaprofessionale='it e digital' and professione.sottoarea='Analisi | sviluppo | web' and categoria='Programmatore Java';
+
+ */

@@ -47,7 +47,7 @@ if($rescheck>0){
 
         ?>
         <div class="user-image">
-        <img src="uploads/userimage/<?=$row['image_url']?>">
+        <img src="uploads/userimage/<?=$row['image_url']?>" alt="">
         </div>
 
         <h3>Benvenuto  <?= $row['nome'] ?> <?= $row['cognome'] ?> </h3>
