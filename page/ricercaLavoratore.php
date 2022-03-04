@@ -2,37 +2,6 @@
 
 session_start();
 include "../db/config.php";
-/*$output='';
-if (isset($_POST['cerca'])){
-    $Lavoratore='';
-    $areaProfessionale=$_POST['Area_professionale'];
-    $categoriaProfessionale=$_POST['Categoria_professionale'];
-    $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
-
-    $sql="select * from professione,user,user_image,curriculum,lavoratore
-            where user.iduser=lavoratore.idUser1
-            and user_image.idUser1=user.iduser
-            and lavoratore.idlavoratore=curriculum.idLavoratore1
-            and professione.idlavoratore1=lavoratore.idlavoratore 
-            and professione.areaprofessionale='$areaProfessionale' 
-            and professione.sottoarea='$sottoAreaProfessionale' 
-            and categoria='$categoriaProfessionale'";
-
-    $result = mysqli_query($conn, $sql);
-    while($row = mysqli_fetch_array($result))
-    {
-
-
-        $nome=$row["nome"];
-        $cognome=$row["cognome"];
-        $areaProf=$row['areaprofessionale'];
-        $sottoArea=$row['sottoarea'];
-        $cate=$row['categoria'];
-        $output .= '<div>'.$nome.'.$cognome.'.$areaProf.'.$sottoArea.'.$cate.'</div>';
-    }
-
-}
-*/
 ?>
 <html lang="en">
 <head>
@@ -67,14 +36,14 @@ while($row = mysqli_fetch_array($result))
     </select><br>
     <label for="">
         Sotto-area professionale <br>
-        <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" required>
+        <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" >
             <option selected disabled>Sotto Area professionale</option>
 
         </select>
     </label><br><br>
     <label for="">
         Categoria Professionale <br>
-        <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" required>
+        <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" >
             <option selected disabled>Categoria professionale</option>
 
         </select><br>
@@ -84,38 +53,101 @@ while($row = mysqli_fetch_array($result))
 <br>
         <a href="welcomeAzienda.php" style="text-decoration: none">Home</a>
     <?php
-    if (isset($_POST['cerca'])){
+    if (isset($_POST['cerca'])) {
 
-    $areaProfessionale=$_POST['Area_professionale'];
-    $categoriaProfessionale=$_POST['Categoria_professionale'];
-    $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
+        $areaProfessionale = null;
+        $categoriaProfessionale = null;
+        $sottoAreaProfessionale = null;
 
-    $sql="select * from professione,user,user_image,curriculum,lavoratore
+        if (isset($_POST['Area_professionale']) and empty($_POST['Categoria_professionale']) and empty($_POST['Sotto_area_professionale'])) {
+            $areaProfessionale = $_POST['Area_professionale'];
+
+            $sql1 = "select * from professione,user,user_image,curriculum,lavoratore
+    where user.iduser=lavoratore.idUser1
+    and user_image.idUser1=user.iduser
+    and lavoratore.idlavoratore=curriculum.idLavoratore1
+    and professione.idlavoratore1=lavoratore.idlavoratore
+    and professione.areaprofessionale='$areaProfessionale'";
+
+            $result1 = mysqli_query($conn, $sql1);
+            $queryResult1 = mysqli_num_rows($result1);
+            if ($queryResult1 > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
+
+                    echo "<div> 
+        &ensp;
+        <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
+        
+         <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
+        
+        </div>";
+                }
+
+            }
+
+
+        }
+
+        if (isset($_POST['Area_professionale']) and isset($_POST['Sotto_area_professionale']) and empty($_POST['Categoria_professionale'])) {
+            $areaProfessionale = $_POST['Area_professionale'];
+            $sottoAreaProfessionale = $_POST['Sotto_area_professionale'];
+            $sql1 = "select * from professione,user,user_image,curriculum,lavoratore
     where user.iduser=lavoratore.idUser1
     and user_image.idUser1=user.iduser
     and lavoratore.idlavoratore=curriculum.idLavoratore1
     and professione.idlavoratore1=lavoratore.idlavoratore
     and professione.areaprofessionale='$areaProfessionale'
-    and professione.sottoarea='$sottoAreaProfessionale'
-    and categoria='$categoriaProfessionale'";
+    and professione.sottoarea='$sottoAreaProfessionale'";
 
-    $result = mysqli_query($conn, $sql);
-    $queryResult=mysqli_num_rows($result);
-    if($queryResult>0){
-    while($row = mysqli_fetch_assoc($result))
-    {
+            $result1 = mysqli_query($conn, $sql1);
+            $queryResult2= mysqli_num_rows($result1);
+            if ($queryResult2 > 0) {
+                while ($row = mysqli_fetch_assoc($result1)) {
 
-   echo "<div> 
+                    echo "<div> 
         &ensp;
-        <h3>".$row["nome"]. " " .$row["cognome"]."</h3> 
+        <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
         
-         <p>".$row['areaprofessionale']."  &ensp;     ".$row['sottoarea']."   &ensp;      ".$row['categoria']."</p>
+         <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
         
         </div>";
-    }
+                }
 
-    }else{
-        echo "nessun lavoratore trovato";}
+            }
+
+
+        }
+        if (isset($_POST['Area_professionale']) and isset($_POST['Sotto_area_professionale']) and isset($_POST['Categoria_professionale'])) {
+            $areaProfessionale = $_POST['Area_professionale'];
+            $sottoAreaProfessionale = $_POST['Sotto_area_professionale'];
+            $categoriaProfessionale = $_POST['Categoria_professionale'];
+            $sql = "select * from professione,user,user_image,curriculum,lavoratore
+        where user.iduser=lavoratore.idUser1
+        and user_image.idUser1=user.iduser
+        and lavoratore.idlavoratore=curriculum.idLavoratore1
+        and professione.idlavoratore1=lavoratore.idlavoratore
+        and professione.areaprofessionale='$areaProfessionale'
+        and professione.sottoarea='$sottoAreaProfessionale'
+        and categoria='$categoriaProfessionale'";
+
+            $result = mysqli_query($conn, $sql);
+            $queryResult = mysqli_num_rows($result);
+            if ($queryResult > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    echo "<div> 
+        &ensp;
+        <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
+        
+         <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
+        
+        </div>";
+                }
+
+            }
+        }
+       
+
     }?>
 </div>
         </body>
