@@ -113,7 +113,7 @@ while($row = mysqli_fetch_array($result))
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
         <form action='' method='post'>
-         <button name='dettagli'>dettagli</button>
+          <button> <a href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
         </form>
          </div>";
                 }
@@ -146,7 +146,7 @@ while($row = mysqli_fetch_array($result))
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
       <form action='' method='post'>
-         <button name='dettagli'>dettagli</button>
+         <button> <a href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
         </form>
         </div>";
                 }
