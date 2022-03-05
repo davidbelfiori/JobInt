@@ -1,7 +1,6 @@
 <?php
 
-if (isset($_POST['submit'])){
-
+if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $subject=$_POST['subject'];
@@ -11,22 +10,22 @@ if (isset($_POST['submit'])){
 
     $headers="Form:".$email;
     $message="Hai ricevuto una email da ".$username.".\n\n ".$problema;
-    
-    if(isset($username) and isset($email) and isset($subject) and isset($problema)){
-        if(mail($to,$subject,$message,$headers)) {
 
+    if (isset($username) and isset($email) and isset($subject) and isset($problema)) {
+        if (mail($to, $subject, $message, $headers)) {
             $subject = "Jobint Help";
             $message = "Grazie per averci contattato." .$username.".\n\n La tua richiesta:".$problema;
             $sender = "From: jobint.help@gmail.com ";
-            if(mail($email, $subject, $message, $sender)){
+            if (mail($email, $subject, $message, $sender)) {
                 header("Location: index.php");
-                exit();}
-            }else{
-            echo "<script> alert('errore1')</script>";} 
-    }else{
-        echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";}
-  
-
+                exit();
+            }
+        } else {
+            echo "<script> alert('errore1')</script>";
+        }
+    } else {
+        echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";
+    }
 }
 
 ?>
