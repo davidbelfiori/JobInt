@@ -14,8 +14,14 @@ if (isset($_POST['submit'])){
     
     if(isset($username) and isset($email) and isset($subject) and isset($problema)){
         if(mail($to,$subject,$message,$headers)) {
-            header("Location: index.php");
-        }else{
+
+            $subject = "Jobint Help";
+            $message = "Grazie per averci contattato." .$username.".\n\n La tua richiesta:".$problema;
+            $sender = "From: jobint.help@gmail.com ";
+            if(mail($email, $subject, $message, $sender)){
+                header("Location: index.php");
+                exit();}
+            }else{
             echo "<script> alert('errore1')</script>";} 
     }else{
         echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";}
