@@ -1,7 +1,6 @@
 <?php
 
-if (isset($_POST['submit'])){
-
+if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $subject=$_POST['subject'];
@@ -11,16 +10,16 @@ if (isset($_POST['submit'])){
 
     $headers="Form:".$email;
     $message="Hai ricevuto una email da ".$username.".\n\n ".$problema;
-    
-    if(isset($username) and isset($email) and isset($subject) and isset($problema)){
-        if(mail($to,$subject,$message,$headers)) {
-            header("Location: index.php");
-        }else{
-            echo "<script> alert('errore1')</script>";} 
-    }else{
-        echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";}
-  
 
+    if (isset($username) and isset($email) and isset($subject) and isset($problema)) {
+        if (mail($to, $subject, $message, $headers)) {
+            header("Location: index.php");
+        } else {
+            echo "<script> alert('errore1')</script>";
+        }
+    } else {
+        echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";
+    }
 }
 
 ?>
