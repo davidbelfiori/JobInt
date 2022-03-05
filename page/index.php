@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
                 <h1 id="scritta-nav">JOBINT</h1>
             </div>
             <div class="menu">
-                <a href="#">Contattaci</a>
+                <a href="help.php">Contattaci</a>
                 <a href="#">FAQ</a>
                 <a href="reg1UA.php">Registrati</a>
 
