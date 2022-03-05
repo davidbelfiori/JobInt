@@ -1,4 +1,5 @@
 <?php
+include "validate_email.php";
 
 if (isset($_POST['submit'])){
 
@@ -6,6 +7,10 @@ if (isset($_POST['submit'])){
     $email = $_POST['email'];
     $subject=$_POST['subject'];
     $problema=$_POST['problema'];
+
+
+
+    if(ValidateEmail($email)==='valid'){
 
     $to="jobint.help@gmail.com";
 
@@ -25,7 +30,10 @@ if (isset($_POST['submit'])){
             echo "<script> alert('errore1')</script>";} 
     }else{
         echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";}
-  
+}else{
+    echo "<script> alert('email non valida'); </script>";
+    //header("Location: help.php");
+    }
 
 }
 

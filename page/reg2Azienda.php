@@ -1,14 +1,13 @@
 <?php
 
 include '../db/config.php';
-
+include "validate_email.php";
 session_start();
 error_reporting(0);
 
 if(empty($_SESSION['info'])){
     header("Location: reg1UA.php");
 }
-
 
 if(isset($_SESSION['info'])){
     extract($_SESSION['info']);
@@ -29,13 +28,16 @@ if (isset($_POST['submit'])) {
 
     //confronto delle password(pw,cpw)
 
+
+    if(ValidateEmail($email)==='valid'){
     if($password == $cpassword){
 
         $sql = "SELECT * FROM jobint.user WHERE email='$email' and username='$username'" ;
         $result = mysqli_query($conn, $sql);
         if(!$result->num_rows > 0){
+            $code=rand(999999,111111);
             $sql = "
-            insert into jobint.user (email, password, typeuser, username) values ('$email','$pw','azienda','$username');";
+            insert into jobint.user (email, password, typeuser, username,code) values ('$email','$pw','azienda','$username','$code');";
             $result = mysqli_query($conn, $sql);
 
             $sql="select * from jobint.azienda where nomeAzienda='$nomeAzienda'";
@@ -51,6 +53,21 @@ if (isset($_POST['submit'])) {
             $result2 = mysqli_query($conn, $sql2);
             $result3 = mysqli_query($conn, $sql3);
             if ($result and $result2 and $result3) {
+
+                $subject = "Profile Verification Code";
+                $message = "Here is the verification code .$code.";
+                $sender = "From: jobint.help@gmail.com ";
+                if(mail($email, $subject, $message, $sender)){
+                    echo"<script>alert('We have sent a passwrod reset otp to your email - $email')</script>";
+                    $_SESSION['info'] = $info;
+                    $_SESSION['email'] = $email;
+                    header('location: verificationcode.php');
+                    exit();
+                }else{
+                  echo "<script>alert('Failed while sending code!')</script>";
+                }
+
+
                 echo "<script> alert('registrazione completata')</script>";
                 header("location: index.php");
                 exit;
@@ -65,6 +82,10 @@ if (isset($_POST['submit'])) {
         }else{  echo "<script>alert('Email o username non disponibile.')</script>"; }
             }else{
             echo"<script> alert('le password non corrispondono')</script>";}
+    }else{
+        echo "<script> alert('email non valida'); </script>";
+        //header("Location: help.php");
+    }
 }
 }
 

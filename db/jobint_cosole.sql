@@ -23,7 +23,8 @@ commit ;
 */
 /* select informazioni lato lavoratore
 
- */
+
+
 select * from user,user_image,curriculum,lavoratore,professione,indirizzo
 where lavoratore.idlavoratore='35'
 and user.iduser=lavoratore.idUser1
@@ -31,7 +32,7 @@ and user_image.idUser1=user.iduser
 and lavoratore.idlavoratore=curriculum.idLavoratore1
 and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore
-
+*/
 
 /*
 select * from user,azienda,ateco
@@ -47,3 +48,5 @@ and lavoratore.idlavoratore=curriculum.idLavoratore1
 and professione.idlavoratore1=lavoratore.idlavoratore and professione.areaprofessionale='it e digital' and professione.sottoarea='Analisi | sviluppo | web' and categoria='Programmatore Java';
 
  */
+
+select code from user where email='jobint.help@gmail.com' AND password='21232f297a57a5a743894a0e4a801fc3'

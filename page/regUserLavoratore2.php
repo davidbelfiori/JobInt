@@ -1,5 +1,6 @@
 <?php
 include '../db/config.php';
+include "validate_email.php";
 
 session_start();
 error_reporting(0);
@@ -40,6 +41,8 @@ if(isset($_POST['submit'])){
     $curriculum_size = $_FILES['curriculum']['size'];
     $tmp_name1 = $_FILES['curriculum']['tmp_name'];
 
+    if(ValidateEmail($email)==='valid'){
+
     if($pw==$cpw){
 
         $sql="select * from jobint.user where email='$email' and username='$username'";
@@ -78,29 +81,44 @@ if(isset($_POST['submit'])){
                                $curr_upload_path = 'uploads/curriculum/' . $new_curr_name;
                                move_uploaded_file($tmp_name1, $curr_upload_path);
 
+                               $code=rand(999999,111111);
 
-                               $sql = "insert into jobint.user (email, password, typeuser, username) values ('$email','$pw','Lavoratore','$username');";
-                       $res = mysqli_query($conn, $sql);
+                               $sql = "insert into jobint.user (email, password, typeuser, username,code) values ('$email','$pw','Lavoratore','$username','$code');";
+                               $res = mysqli_query($conn, $sql);
 
+                               $sql2 = "insert into lavoratore (nome, cognome, dob, sesso, codicefiscale, tel, idUser1) VALUES ('$nome','$cognome','$dob','$sesso','$cf','$nCell',(select jobint.user.iduser from user where username='$username' and email='$email'))";
+                               $res = mysqli_query($conn, $sql2);
 
-                       $sql2 = "insert into lavoratore (nome, cognome, dob, sesso, codicefiscale, tel, idUser1) VALUES ('$nome','$cognome','$dob','$sesso','$cf','$nCell',(select jobint.user.iduser from user where username='$username' and email='$email'))";
-                       $res = mysqli_query($conn, $sql2);
+                               $sql3 = " insert into indirizzo (qualificatore, nomevia, ncivico, cap, comune, provincia, citta, idlavoratore1) 
+                                values  ('$qualificatore','$indirizzo','$numeroCivico', '$CAP' ,'$comune','$provincia','$citta',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
+                               $res = mysqli_query($conn, $sql3);
 
-                       $sql3 = " insert into indirizzo (qualificatore, nomevia, ncivico, cap, comune, provincia, citta, idlavoratore1) 
-                        values  ('$qualificatore','$indirizzo','$numeroCivico', '$CAP' ,'$comune','$provincia','$citta',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
-                       $res = mysqli_query($conn, $sql3);
+                               $sql4 = "insert into professione (areaprofessionale, sottoarea, categoria, idlavoratore1) VALUES ('$areaProfessionale','$sottoAreaProfessionale','$categoriaProfessionale',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
+                               $res = mysqli_query($conn, $sql4);
 
-                       $sql4 = "insert into professione (areaprofessionale, sottoarea, categoria, idlavoratore1) VALUES ('$areaProfessionale','$sottoAreaProfessionale','$categoriaProfessionale',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
-                       $res = mysqli_query($conn, $sql4);
+                               $sql5 = "insert into user_image (image_url, idUser1) VALUES ('$new_img_name',(select jobint.user.iduser from user where username='$username' and email='$email'))";
+                               $res = mysqli_query($conn, $sql5);
 
-                       $sql5 = "insert into user_image (image_url, idUser1) VALUES ('$new_img_name',(select jobint.user.iduser from user where username='$username' and email='$email'))";
-                       $res = mysqli_query($conn, $sql5);
-
-                       $sql6="insert into curriculum (pdf_url, idLavoratore1) VALUES ('$new_curr_name',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
-                       $res = mysqli_query($conn, $sql6);
+                               $sql6="insert into curriculum (pdf_url, idLavoratore1) VALUES ('$new_curr_name',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
+                               $res = mysqli_query($conn, $sql6);
 
 
                        if ($res) {
+
+                           $subject = "Profile Verification Code";
+                           $message = "Here is the verification code .$code.";
+                           $sender = "From: jobint.help@gmail.com ";
+                           if(mail($email, $subject, $message, $sender)){
+                               echo"<script>alert('We have sent a passwrod reset otp to your email - $email')</script>";
+                               $_SESSION['info'] = $info;
+                               $_SESSION['email'] = $email;
+                               header('location: verificationcode.php');
+                               exit();
+                           }else{
+                               echo "<script>alert('Failed while sending code!')</script>";
+                           }
+
+
                            echo "<script> alert('registrazione completata')</script>";
                            header("location: index.php");
                            exit;
@@ -123,6 +141,8 @@ if(isset($_POST['submit'])){
                                                      }else{ echo  "<script>alert('username or email already used')</script>";  }
 
                                                             }else{echo "<script>alert('le password non corrispondono.')</script>";}
+
+    }else{echo "<script>alert('email non valida')</script>";}
                 }
                     }
 

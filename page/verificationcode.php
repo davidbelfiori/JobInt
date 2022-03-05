@@ -4,45 +4,34 @@ include '../db/config.php';
 
 //avvio della sessione
 session_start();
-
+$email = $_SESSION['email'];
+if($email == false){
+    header('Location: index.php');
+}
 error_reporting(0);
 
-if (isset($_SESSION['username'])) {
-    header("Location: welcomeAzienda.php");
-}
 
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
 
-
-
-    $email = $_POST['email'];
-    $password = md5($_POST['password']);
-
-
-    $sql1="select  * from user where email='$email' AND password='$password'";
-    $result1=mysqli_query($conn,$sql1);
-    if($result1->num_rows>0){
-        $row= mysqli_fetch_assoc($result1);
-        $code=$row['code'];
-        if($code!=0) {
-            $_SESSION['email']=$row['email'];
-            header("location: verificationcode.php");
-            exit;
+    $otp = mysqli_real_escape_string($conn,$_POST['otp']);
+    $check_code = "SELECT * FROM user WHERE code = $otp";
+    $code_res = mysqli_query($conn, $check_code);
+    if(mysqli_num_rows($code_res)>0){
+        $code = 0;
+        $update_profile = "UPDATE user SET code = $code WHERE email = '$email'";
+        $run_query = mysqli_query($conn, $update_profile);
+        if($run_query){
+            echo "<script>alert('ora puoi accedere su jobint!')</script>";
         }
-        //ricerca nel database delle credenziali con il confronto tra email e password inserite con quelle presenti nel db
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['email']=$row['email'];
-        if($row['typeuser']=='lavoratore'){
-            header("location: welcomeLavoratoreHome.php");
+        header('location: index.php');
 
-        }else{
-            header("Location: welcomeAzienda.php");
-        }
 
-    } else {
-        echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-    }
+
+
+
+    }else{
+        echo "<script>alert('codice errato!')</script>";}
 
 }
 
@@ -87,19 +76,16 @@ if (isset($_POST['submit'])) {
         <div class="form-container">
             <img class="logo-accesso" src="../Resource/accesso.png">
             <form action="" method="POST" class="login-email" >
+                <h2>Code Verification</h2>
                 <div class="input-group">
-                    <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
+                    <input type="number" placeholder="Otp" name="otp"  required>
                 </div>
-                <div class="input-group">
-                    <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
 
-                </div>
                 <div class="input-group">
-                    <button name="submit" class="btn"><a id="button-text">Accedi</a></button>
+                    <button name="submit" class="btn"><a id="button-text">Verifica</a></button>
                 </div>
             </form>
-            <p>Non hai un account JobInt? <a href="regUserLavoratore.php">Lavoratore</a> <a href="reg1UA.php">Azienda</a></p>
-            <p>Hai dimenticato la password? <a href="forgot-password.php">Recupera</a></p>
+
         </div>
     </div>
 </div>

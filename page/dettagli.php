@@ -40,6 +40,7 @@ if($rescheck>0){
         Professione: <?= $row['areaprofessionale'] ?> <br>
         Sotto-area: <?= $row['sottoarea'] ?> <br>
         Categoria: <?= $row['categoria'] ?> <br>
+        Contact: <a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a>
 
         <form action="" method="post">
             <button name="view_pdf">Curriculum</button>
