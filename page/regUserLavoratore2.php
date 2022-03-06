@@ -5,146 +5,148 @@ include "validate_email.php";
 session_start();
 error_reporting(0);
 
-if(empty($_SESSION['info'])){
+if (empty($_SESSION['info'])) {
     header("Location: regUserLavoratore.php");
 }
 
 
-if(isset($_SESSION['info'])){
-extract($_SESSION['info']);
+if (isset($_SESSION['info'])) {
+    extract($_SESSION['info']);
 
 
-if(isset($_POST['submit'])){
+    if (isset($_POST['submit'])) {
+        $pw=md5($password);
+        $cpw=md5($cpassword);
+        $nome=$_POST['nome'];
+        $cognome=$_POST['cognome'];
+        $dob=$_POST['dob'];
+        $sesso=$_POST['sesso'];
+        $cf=$_POST['cf'];
+        $qualificatore=$_POST['qualificatore'];
+        $indirizzo=$_POST['indirizzo'];
+        $numeroCivico=$_POST['numeroCivico'];
+        $comune=$_POST['Comune'];
+        $provincia=$_POST['provincia'];
+        $CAP=$_POST['CAP'];
+        $citta=$_POST['Citta'];
+        $nCell=$_POST['numeroCellulare'];
+        $areaProfessionale=$_POST['Area_professionale'];
+        $categoriaProfessionale=$_POST['Categoria_professionale'];
+        $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
+        $img_name = $_FILES['my_image']['name'];
+        $img_size = $_FILES['my_image']['size'];
+        $tmp_name = $_FILES['my_image']['tmp_name'];
+        $curriculum_name = $_FILES['curriculum']['name'];
+        $curriculum_size = $_FILES['curriculum']['size'];
+        $tmp_name1 = $_FILES['curriculum']['tmp_name'];
 
-    $pw=md5($password);
-    $cpw=md5($cpassword);
-    $nome=$_POST['nome'];
-    $cognome=$_POST['cognome'];
-    $dob=$_POST['dob'];
-    $sesso=$_POST['sesso'];
-    $cf=$_POST['cf'];
-    $qualificatore=$_POST['qualificatore'];
-    $indirizzo=$_POST['indirizzo'];
-    $numeroCivico=$_POST['numeroCivico'];
-    $comune=$_POST['Comune'];
-    $provincia=$_POST['provincia'];
-    $CAP=$_POST['CAP'];
-    $citta=$_POST['Citta'];
-    $nCell=$_POST['numeroCellulare'];
-    $areaProfessionale=$_POST['Area_professionale'];
-    $categoriaProfessionale=$_POST['Categoria_professionale'];
-    $sottoAreaProfessionale=$_POST['Sotto_area_professionale'];
-    $img_name = $_FILES['my_image']['name'];
-    $img_size = $_FILES['my_image']['size'];
-    $tmp_name = $_FILES['my_image']['tmp_name'];
-    $curriculum_name = $_FILES['curriculum']['name'];
-    $curriculum_size = $_FILES['curriculum']['size'];
-    $tmp_name1 = $_FILES['curriculum']['tmp_name'];
-
-    if(ValidateEmail($email)==='valid'){
-
-    if($pw==$cpw){
-
-        $sql="select * from jobint.user where email='$email' and username='$username'";
-        $result=mysqli_query($conn,$sql);
-        if(!$result -> num_rows > 0){
-
-        $sql="select * from jobint.lavoratore where codicefiscale='$cf'";
-        $result=mysqli_query($conn,$sql);
-        if( !$result -> num_rows > 0 ){
-
-            $sql="select * from jobint.lavoratore where tel='$ceell'";
-            $result=mysqli_query($conn,$sql);
+        if (ValidateEmail($email)==='valid') {
+            if ($pw==$cpw) {
+                $sql="select * from jobint.user where email='$email' and username='$username'";
+                $result=mysqli_query($conn, $sql);
+                if (!$result -> num_rows > 0) {
+                    $sql="select * from jobint.lavoratore where codicefiscale='$cf'";
+                    $result=mysqli_query($conn, $sql);
+                    if (!$result -> num_rows > 0) {
+                        $sql="select * from jobint.lavoratore where tel='$ceell'";
+                        $result=mysqli_query($conn, $sql);
 
 
 
-           if(!$result->num_rows > 0){
+                        if (!$result->num_rows > 0) {
+                            if ($img_size<5000000) {
+                                $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+                                $img_ex_lc = strtolower($img_ex);
+                                $allowed_exs = array("jpg", "jpeg", "png");
 
-               if($img_size<5000000){
+                                if (in_array($img_ex_lc, $allowed_exs)) {
+                                    $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                                    $img_upload_path = 'uploads/userimage/' . $new_img_name;
+                                    move_uploaded_file($tmp_name, $img_upload_path);
 
-                   $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-                   $img_ex_lc = strtolower($img_ex);
-                   $allowed_exs = array("jpg", "jpeg", "png");
+                                    if ($curriculum_size<500000) {
+                                        $curr_ex=pathinfo($curriculum_name, PATHINFO_EXTENSION);
+                                        $curr_ex_lc=strtolower($curr_ex);
+                                        $allowed_exs1 = array("pdf", "doc", "docx");
 
-                   if (in_array($img_ex_lc, $allowed_exs)) {
-                       $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
-                       $img_upload_path = 'uploads/userimage/' . $new_img_name;
-                       move_uploaded_file($tmp_name, $img_upload_path);
+                                        if (in_array($curr_ex_lc, $allowed_exs1)) {
+                                            $new_curr_name = uniqid("CURRICULUM-", true) . '.' . $curr_ex_lc;
+                                            $curr_upload_path = 'uploads/curriculum/' . $new_curr_name;
+                                            move_uploaded_file($tmp_name1, $curr_upload_path);
 
-                       if($curriculum_size<500000){
-                           $curr_ex=pathinfo($curriculum_name,PATHINFO_EXTENSION);
-                           $curr_ex_lc=strtolower($curr_ex);
-                           $allowed_exs1 = array("pdf", "doc", "docx");
+                                            $code=rand(999999, 111111);
 
-                           if(in_array($curr_ex_lc,$allowed_exs1)){
-                               $new_curr_name = uniqid("CURRICULUM-", true) . '.' . $curr_ex_lc;
-                               $curr_upload_path = 'uploads/curriculum/' . $new_curr_name;
-                               move_uploaded_file($tmp_name1, $curr_upload_path);
+                                            $sql = "insert into jobint.user (email, password, typeuser, username,code) values ('$email','$pw','Lavoratore','$username','$code');";
+                                            $res = mysqli_query($conn, $sql);
 
-                               $code=rand(999999,111111);
+                                            $sql2 = "insert into lavoratore (nome, cognome, dob, sesso, codicefiscale, tel, idUser1) VALUES ('$nome','$cognome','$dob','$sesso','$cf','$nCell',(select jobint.user.iduser from user where username='$username' and email='$email'))";
+                                            $res = mysqli_query($conn, $sql2);
 
-                               $sql = "insert into jobint.user (email, password, typeuser, username,code) values ('$email','$pw','Lavoratore','$username','$code');";
-                               $res = mysqli_query($conn, $sql);
-
-                               $sql2 = "insert into lavoratore (nome, cognome, dob, sesso, codicefiscale, tel, idUser1) VALUES ('$nome','$cognome','$dob','$sesso','$cf','$nCell',(select jobint.user.iduser from user where username='$username' and email='$email'))";
-                               $res = mysqli_query($conn, $sql2);
-
-                               $sql3 = " insert into indirizzo (qualificatore, nomevia, ncivico, cap, comune, provincia, citta, idlavoratore1) 
+                                            $sql3 = " insert into indirizzo (qualificatore, nomevia, ncivico, cap, comune, provincia, citta, idlavoratore1) 
                                 values  ('$qualificatore','$indirizzo','$numeroCivico', '$CAP' ,'$comune','$provincia','$citta',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
-                               $res = mysqli_query($conn, $sql3);
+                                            $res = mysqli_query($conn, $sql3);
 
-                               $sql4 = "insert into professione (areaprofessionale, sottoarea, categoria, idlavoratore1) VALUES ('$areaProfessionale','$sottoAreaProfessionale','$categoriaProfessionale',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
-                               $res = mysqli_query($conn, $sql4);
+                                            $sql4 = "insert into professione (areaprofessionale, sottoarea, categoria, idlavoratore1) VALUES ('$areaProfessionale','$sottoAreaProfessionale','$categoriaProfessionale',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
+                                            $res = mysqli_query($conn, $sql4);
 
-                               $sql5 = "insert into user_image (image_url, idUser1) VALUES ('$new_img_name',(select jobint.user.iduser from user where username='$username' and email='$email'))";
-                               $res = mysqli_query($conn, $sql5);
+                                            $sql5 = "insert into user_image (image_url, idUser1) VALUES ('$new_img_name',(select jobint.user.iduser from user where username='$username' and email='$email'))";
+                                            $res = mysqli_query($conn, $sql5);
 
-                               $sql6="insert into curriculum (pdf_url, idLavoratore1) VALUES ('$new_curr_name',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
-                               $res = mysqli_query($conn, $sql6);
-
-
-                       if ($res) {
-
-                           $subject = "Profile Verification Code";
-                           $message = "Here is the verification code .$code.";
-                           $sender = "From: jobint.help@gmail.com ";
-                           if(mail($email, $subject, $message, $sender)){
-                               echo"<script>alert('We have sent a passwrod reset otp to your email - $email')</script>";
-                               $_SESSION['info'] = $info;
-                               $_SESSION['email'] = $email;
-                               header('location: verificationcode.php');
-                               exit();
-                           }else{
-                               echo "<script>alert('Failed while sending code!')</script>";
-                           }
+                                            $sql6="insert into curriculum (pdf_url, idLavoratore1) VALUES ('$new_curr_name',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
+                                            $res = mysqli_query($conn, $sql6);
 
 
-                           echo "<script> alert('registrazione completata')</script>";
-                           header("location: index.php");
-                           exit;
-                       } else {
-                           echo mysqli_error($conn);
-                           echo "<script>alert('Qualcosa è andato storto.')</script>";
-                       }
-                       }     else{echo "<script>alert('errore2 curriculum')</script>";}
+                                            if ($res) {
+                                                $subject = "Profile Verification Code";
+                                                $message = "Here is the verification code .$code.";
+                                                $sender = "From: jobint.help@gmail.com ";
+                                                if (mail($email, $subject, $message, $sender)) {
+                                                    echo"<script>alert('We have sent a passwrod reset otp to your email - $email')</script>";
+                                                    $_SESSION['info'] = $info;
+                                                    $_SESSION['email'] = $email;
+                                                    header('location: verificationcode.php');
+                                                    exit();
+                                                } else {
+                                                    echo "<script>alert('Failed while sending code!')</script>";
+                                                }
 
-                   }else{echo "<script>alert('errore1 curriculum')</script>";}
 
-                                   }else{echo "<script>alert('errore2')</script>";}
-
-                                     }else{echo "<script>alert('errore1')</script>";}
-
-                                           }else{echo "<script>alert('numero di telefono gia inserito')</script>"; }
-
-                                                }else{echo "<script>alert('Codice fiscale errato o gia inserito')</script>";}
-
-                                                     }else{ echo  "<script>alert('username or email already used')</script>";  }
-
-                                                            }else{echo "<script>alert('le password non corrispondono.')</script>";}
-
-    }else{echo "<script>alert('email non valida')</script>";}
-                }
+                                                echo "<script> alert('registrazione completata')</script>";
+                                                header("location: index.php");
+                                                exit;
+                                            } else {
+                                                echo mysqli_error($conn);
+                                                echo "<script>alert('Qualcosa è andato storto.')</script>";
+                                            }
+                                        } else {
+                                            echo "<script>alert('errore2 curriculum')</script>";
+                                        }
+                                    } else {
+                                        echo "<script>alert('errore1 curriculum')</script>";
+                                    }
+                                } else {
+                                    echo "<script>alert('errore2')</script>";
+                                }
+                            } else {
+                                echo "<script>alert('errore1')</script>";
+                            }
+                        } else {
+                            echo "<script>alert('numero di telefono gia inserito')</script>";
+                        }
+                    } else {
+                        echo "<script>alert('Codice fiscale errato o gia inserito')</script>";
                     }
+                } else {
+                    echo  "<script>alert('username or email already used')</script>";
+                }
+            } else {
+                echo "<script>alert('le password non corrispondono.')</script>";
+            }
+        } else {
+            echo "<script>alert('email non valida')</script>";
+        }
+    }
+}
 
 
 ?>
@@ -244,8 +246,7 @@ Qualificatore <br>
     $area = '';
     $query = "SELECT area FROM categoriaprofessionale GROUP BY area ORDER BY area ASC";
     $result = mysqli_query($conn, $query);
-    while($row = mysqli_fetch_array($result))
-    {
+    while ($row = mysqli_fetch_array($result)) {
         $area .= '<option value="'.$row["area"].'">'.$row["area"].'</option>';
     }
     ?>
