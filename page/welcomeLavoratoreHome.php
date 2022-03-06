@@ -33,12 +33,11 @@ and lavoratore.idlavoratore=curriculum.idLavoratore1
 and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore
 ";
-$res = mysqli_query($conn,$sql);
+$res = mysqli_query($conn, $sql);
 $rescheck= mysqli_num_rows($res);
 
-if($rescheck>0){
-    while ($row = mysqli_fetch_assoc($res)){
-
+if ($rescheck>0) {
+    while ($row = mysqli_fetch_assoc($res)) {
         ?>
 
 <button><a href="welcomeLavoratore.php">Il mio profilo</a></button>
@@ -54,7 +53,9 @@ if($rescheck>0){
 
         <br>
 
-    <?php }} ?>
+    <?php
+    }
+} ?>
 
 
 
