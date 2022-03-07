@@ -56,12 +56,6 @@ if($rescheck>0){
 
     <?php }} ?>
 
-
-
-
-
-
-
 <a href="logout.php">Logout</a>
 </body>
 </html>

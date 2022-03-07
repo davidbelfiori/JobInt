@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    font-family: 'PT Sans', sans-serif;
+}
+.container{
+
+    padding:  100px;
+    padding-top: 0;
+    max-width: 1200px;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+}
+.logo-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.title-container{
+    width: 50%;
+}
+.title{
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+}
+.logo{
+    width: 25%;
+}
+.logo-image{
+    width: 100%;
+}
+.menu{
+    font-size: 15px;
+    width: 30%;
+    text-align: right;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    text-align: right;
+    border-bottom: 1px solid rgb(112, 112, 112);
+}
+.menu-a{
+    color: black;
+}
+a{
+    text-decoration: none;
+}
+.form-container{
+    padding-top: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -300px;
+}
+
+.form-control{
+    height: 30px;
+}
+
+form{
+    background-color: rgb(230, 230, 230);
+    width: 600px;
+    padding: 35px;
+    border-radius: 10px;
+    line-height: 30px;
+}
+.input{
+    border-radius: 40px;
+    border-style: none;
+    height: 30px;
+    width: 300px;
+}
+#data{
+    width: 150px;
+    border-radius: 40px;
+    border-style: none;
+    height: 20px;
+    padding: 5px;
+}
+
+select{
+    border-style: none;
+    border-radius: 40px;
+}
+button{
+    background-color: black;
+    border-radius: 50px;
+    border-style: none;
+    width: 80px;
+    height: 25px;
+}
+.button-a{
+    color: white;
+}
+
+p{
+    font-size: 15px;
+}
+.aggiungi{
+    color: black;
+    opacity: 100%;
+
+}
+#bottone{
+    text-align: center;
+}

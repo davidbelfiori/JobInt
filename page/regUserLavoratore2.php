@@ -5,9 +5,9 @@ include "validate_email.php";
 session_start();
 error_reporting(0);
 
-if(empty($_SESSION['info'])){
+/*if(empty($_SESSION['info'])){
     header("Location: regUserLavoratore.php");
-}
+}*/
 
 
 if(isset($_SESSION['info'])){
@@ -155,137 +155,159 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registrazione Lavoratore</title>
+    <title>JobInt lavoratore</title>
+    <link href="css/regUserLavoratore2.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="form-group"  style="text-align: center">
-<form action="regUserLavoratore2.php" method="post" enctype="multipart/form-data">
+<div class="container">
+    <div class="navbar">
+        <div class="logo-container">
+            <div class="logo">
+                <img class="logo-image" src="../Resource/logo.png">
+            </div>
+            <div class="title-container">
+                <h1 class="title">Lavoratore</h1>
+            </div>
+        </div>
+        <div class="menu">
+            <nav>
+                <a class="menu-a" href="help.php">Contattaci</a>
+                <a class="menu-a" href="#">FAQ</a>
+                <a class="menu-a" href="index.php">Accedi</a>
+            </nav>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-container">
+            <form class="registration-form" action="" method="POST" enctype="multipart/form-data">
+                <b><p>Dati personali</p></b>
+                <div class="input-group">
+                    <p>Nome</p>
+                    <input class="input" type="text" name="nome">
+                </div>
+                <div class="input-group">
+                    <p>Cognome</p>
+                    <input class="input" type="text" name="cognome">
+                </div>
+                <div class="input-group">
+                    <p>Data di nascita</p>
+                    <input type="date" name="dob" id="data">
+                </div>
+                <div>
+                    <p>Sesso</p>
+                    <select name="sesso" id="" >
+                        <option selected></option>
+                        <option value="M"> M</option>
+                        <option value="F"> F</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <p>Codice fiscale</p>
+                    <input class="input" type="text" name="cf">
+                    <div class="input-group">
+                        <b><p>Dati di contatto</p></b>
+                        <select name="qualificatore">
+                            <option value="indirizzo" disabled="disabled" selected>
+                                Via/Piazza
+                            </option>
+                            <option value="via">
+                                Via
+                            </option>
+                            <option value="piazza">
+                                Piazza
+                            </option>
+                        </select>
+                        <br>
+                        <input class="input" type="text" name="indirizzo">
+                    </div>
+                    <div class="input-group">
+                        <p>Numero civico</p>
+                        <input class="input" type="text" name="numeroCivico">
+                    </div>
+                    <div class="input-group">
+                        <p>Comune</p>
+                        <input class="input" type="text" name="Comune">
+                    </div>
+                    <div class="input-group">
+                        <p>Provincia</p>
+                        <input class="input" type="text" name="provincia" maxlength="2">
+                    </div>
+                    <div class="input-group">
+                        <p>CAP</p>
+                        <input class="input" type="text" name="CAP" maxlength="5">
+                    </div>
+                    <div class="input-group">
+                        <p>
+                            Città
+                        </p>
+                        <input class="input" type="text" name="Citta">
+                    </div>
+                    <div class="input-group">
+                        <p>Numero di cellulare</p>
+                        <input class="input" type="text" name="numeroCellulare" maxlength="10"
+                    </div>
+                    <div class="input-group">
+                        <b>
+                            <p>
+                                Professioni d'interesse
+                            </p>
+                        </b>
+                        <?php
 
+                        $area = '';
+                        $query = "SELECT area FROM categoriaprofessionale GROUP BY area ORDER BY area ASC";
+                        $result = mysqli_query($conn, $query);
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            $area .= '<option value="'.$row["area"].'">'.$row["area"].'</option>';
+                        }
+                        ?>
+                        <div class="input-group">
+                            <p>Area professionale</p>
+                            <select name="Area_professionale" id="Area_professionale"  class="form-control action" required >
+                                <option selected disabled>Area Professionale</option>
+                                <?php echo $area; ?>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <p>Sotto-area professionale</p>
+                            <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" required>
+                                <option selected disabled>Sotto Area professionale</option>
 
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <p>Categoria Professionale</p>
+                            <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" required>
+                                <option selected disabled>Categoria professionale</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <p>Allegato PDF curriculum</p>
+                        <input class="aggiungi"  type="file" id="myfile" name="curriculum" accept="application/pdf" required>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <p>Immagine profilo</p>
+                        <input class="aggiungi"   type="file" name="my_image" placeholder="user image" required >
 
-<h3>Dati personali</h3><br>
-<label for="Nome">
-    Nome <br>
-    <input type="text" name="nome" placeholder="nome" required>
-</label>
-<br><br>
-<label for="Cognome">
-    Cognome <br>
-    <input type="text" name="cognome" placeholder="cognome" required>
-</label>
-<br><br>
-<label for="dob">
-    Data di Nascita <br>
-    <input type="date" name="dob" placeholder="data di nascita">
-</label> <br><br>
-<label for="">
-   Sesso <br>
-<select name="sesso" id="" >
-    <option selected></option>
-    <option value="M"> M</option>
-    <option value="F"> F</option>
-</select>
-</label><br><br>
-<label for="cf">
-    Codice fiscale <br>
-    <input type="text" placeholder="Codice fiscale" name="cf"  maxlength="16" minlength="16"  required>
-</label>
-<br><br>
-    <h3> Dati di Contatto</h3>
-    <br>
-Qualificatore <br>
-<select  name="qualificatore" aria-label="Default select example">
-  <option selected disabled>Via|Piazza|Largo</option>
-  <option value="via">Via</option>
-  <option value="piazza">Piazza</option>
-  <option value="largo">Largo</option>
-</select><br><br>
-<label for="indirizzo">
-    indirizzo <br>
-    <input type="text" name="indirizzo" placeholder="indirizzo" required>
-</label>
-<br><br>
-<label for="numero civico">
-    Numero Civico <br>
-    <input type="number" name="numeroCivico" placeholder="Numero Civico" required>
-</label>
-<br><br>
-<label for="Comune">
-    Comune <br>
-    <input type="text" name="Comune" placeholder="Comune" required>
-</label>
-<br><br>
-<label for="Provincia">
-    Provincia <br>
-    <input type="text" name="provincia" placeholder="Provincia" required>
-</label>
-<br><br>
-<label for="CAP">
-    CAP <br>
-    <input type="number" name="CAP" placeholder="CAP" required>
-</label>
-<br><br>
-    <label for="citta">
-        Citta<br>
-        <input type="text" name="Citta" placeholder="Città" required>
-    </label>
-    <br><br>
-<label for="numero civico">
-    Numero cellulare <br>
-    <input type="text" name="numeroCellulare" placeholder="Numero cellulare" maxlength="10" required>
-</label>
-<br><br>
-<h3> Professioni D'interesse</h3>
-    <?php
-    // $con = mysqli_connect("localhost", "admin", "admin", "countrydb");
-    $area = '';
-    $query = "SELECT area FROM categoriaprofessionale GROUP BY area ORDER BY area ASC";
-    $result = mysqli_query($conn, $query);
-    while($row = mysqli_fetch_array($result))
-    {
-        $area .= '<option value="'.$row["area"].'">'.$row["area"].'</option>';
-    }
-    ?>
-    <label for="">
-        Area professionale <br>
-        <select name="Area_professionale" id="Area_professionale"  class="form-control action" required >
-            <option selected disabled>Area Professionale</option>
-            <?php echo $area; ?>
-        </select><br>
-        <label for="">
-            Sotto-area professionale <br>
-            <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" required>
-                <option selected disabled>Sotto Area professionale</option>
-
-            </select>
-        </label><br><br>
-        <label for="">
-            Categoria Professionale <br>
-            <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" required>
-                <option selected disabled>Categoria professionale</option>
-
-            </select>
-
-    <br>
-
-    <label>
-        Curriculum <br>
-        <input type="file" name="curriculum" placeholder="user image" accept="application/pdf" required>
-    </label> <br>
-    <label>
-        Immagine Profilo <br>
-        <input type="file" name="my_image" placeholder="user image" required>
-    </label> <br> <br>
-
-<button class="button" type="submit" name="submit"><a class="button-a">Registrati</a></button>
-</form>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="input-group" id="bottone">
+                        <button type="submit" name="submit"><a class="button-a">Registrati</a></button>
+                    </div>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
-
-
 </html>
 <script>
     $(document).ready(function(){

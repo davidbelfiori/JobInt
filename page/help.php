@@ -21,7 +21,7 @@ if (isset($_POST['submit'])){
         if(mail($to,$subject,$message,$headers)) {
 
             $subject = "Jobint Help";
-            $message = "Grazie per averci contattato." .$username.".\n\n La tua richiesta:".$problema;
+            $message = "Grazie per averci contattato" .$username.".\n\n La tua richiesta:  ".$problema."\n\n Con i tuoi feedback rendiamo JobInt migliore";
             $sender = "From: jobint.help@gmail.com ";
             if(mail($email, $subject, $message, $sender)){
                 header("Location: index.php");
@@ -48,6 +48,9 @@ if (isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobInt Help</title>
     <link href="css/help.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -79,6 +82,9 @@ if (isset($_POST['submit'])){
                 </div>
                 <div class="button-container">
                     <button class="button" type="submit" name="submit"><a class="button-a" >Avanti</a></button>
+                </div>
+                <div class="input-group">
+                    <a onclick="history.go(-1) ; return false;">Indietro</a>
                 </div>
 
             </form>
