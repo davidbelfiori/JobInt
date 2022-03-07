@@ -24,8 +24,8 @@ $sql= "select * from user,azienda,ateco
 where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='$username' and email='$email'";
 $result = mysqli_query($conn, $sql);
 $resultcheck=mysqli_num_rows($result);
-if($resultcheck > 0){
-    while($row=mysqli_fetch_assoc($result)){
+if ($resultcheck > 0) {
+    while ($row=mysqli_fetch_assoc($result)) {
         ?>
 
         <h3> Benvenuta Azienda: id. <?= $row['iduser'] ?> </h3>
@@ -36,7 +36,9 @@ if($resultcheck > 0){
 
 
 
-  <?php  } }?>
+  <?php
+    }
+}?>
 
 <h5>Hai bisogno di personale?</h5>
 <button><a href="ricercaLavoratore.php">Cerca</a></button> <br><br>
