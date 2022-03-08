@@ -10,31 +10,29 @@ error_reporting(0);
 if (isset($_SESSION['username'])) {
     $username=$_SESSION['username'];
     $sql="select * from user where username='$username'";
-    $res = mysqli_query($conn,$sql);
-    if($res->num_rows >0){
+    $res = mysqli_query($conn, $sql);
+    if ($res->num_rows >0) {
         $row1=mysqli_fetch_assoc($res);
-        if($row1['typeuser']=='lavoratore'){
+        if ($row1['typeuser']=='lavoratore') {
             header("Location: welcomeLavoratoreHome.php");
-        }else{header("Location: welcomeAzienda.php");}
+        } else {
+            header("Location: welcomeAzienda.php");
+        }
     }
-
 }
 
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
-
-
-
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
 
     $sql1="select  * from user where email='$email' AND password='$password'";
-    $result1=mysqli_query($conn,$sql1);
-    if($result1->num_rows>0){
+    $result1=mysqli_query($conn, $sql1);
+    if ($result1->num_rows>0) {
         $row= mysqli_fetch_assoc($result1);
         $code=$row['code'];
-        if($code!=0) {
+        if ($code!=0) {
             $_SESSION['email']=$row['email'];
             header("location: verificationcode.php");
             exit;
@@ -42,17 +40,14 @@ if (isset($_POST['submit'])) {
         //ricerca nel database delle credenziali con il confronto tra email e password inserite con quelle presenti nel db
         $_SESSION['username'] = $row['username'];
         $_SESSION['email']=$row['email'];
-        if($row['typeuser']=='lavoratore'){
+        if ($row['typeuser']=='lavoratore') {
             header("location: welcomeLavoratoreHome.php");
-
-        }else{
+        } else {
             header("Location: welcomeAzienda.php");
         }
-
     } else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
     }
-
 }
 
 ?>
