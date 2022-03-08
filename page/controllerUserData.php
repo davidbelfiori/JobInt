@@ -20,7 +20,7 @@ if(isset($_POST['check-email'])){
         if($run_query){
             $subject = "Password Reset Code";
             $message = "Your password reset code is $code";
-            $sender = "From: jobint.help@gmail.com ";
+            $sender = "From: noreply.jobint@gmail.com ";
             if(mail($email, $subject, $message, $sender)){
                 $info = "We've sent a passwrod reset otp to your email - $email";
                 $_SESSION['info'] = $info;

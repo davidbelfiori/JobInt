@@ -5,17 +5,20 @@ include "validate_email.php";
 session_start();
 error_reporting(0);
 
-/*if(empty($_SESSION['info'])){
+//controllo se sono state compilate le informazioni alla pagina precedente
+
+if(empty($_SESSION['info'])){
     header("Location: regUserLavoratore.php");
-}*/
+}
 
 
 if(isset($_SESSION['info'])){
+    //estrazione informazioni array info
 extract($_SESSION['info']);
 
 
 if(isset($_POST['submit'])){
-
+    //crittografia delle password Hash
     $pw=md5($password);
     $cpw=md5($cpassword);
     $nome=$_POST['nome'];
@@ -41,18 +44,23 @@ if(isset($_POST['submit'])){
     $curriculum_size = $_FILES['curriculum']['size'];
     $tmp_name1 = $_FILES['curriculum']['tmp_name'];
 
+    //controllo attraverso funzione se l'email è valida
     if(ValidateEmail($email)==='valid'){
 
+        //confronto e controllo tra password e conferma password
     if($pw==$cpw){
 
+        //controllo se le credenziali inserite esistono gia nel db
         $sql="select * from jobint.user where email='$email' and username='$username'";
         $result=mysqli_query($conn,$sql);
         if(!$result -> num_rows > 0){
 
+        //controllo attraverso il cf se il lavoratore è gia stato inserito nel sistema
         $sql="select * from jobint.lavoratore where codicefiscale='$cf'";
         $result=mysqli_query($conn,$sql);
         if( !$result -> num_rows > 0 ){
 
+            //controllo se il numero di telefono è gia presente nel sistema
             $sql="select * from jobint.lavoratore where tel='$ceell'";
             $result=mysqli_query($conn,$sql);
 
@@ -60,35 +68,43 @@ if(isset($_POST['submit'])){
 
            if(!$result->num_rows > 0){
 
+               //controllo della grandezza del immagine
                if($img_size<5000000){
 
                    $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                    $img_ex_lc = strtolower($img_ex);
                    $allowed_exs = array("jpg", "jpeg", "png");
 
+                   //controllo estenzione immagine
                    if (in_array($img_ex_lc, $allowed_exs)) {
                        $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
                        $img_upload_path = 'uploads/userimage/' . $new_img_name;
                        move_uploaded_file($tmp_name, $img_upload_path);
-
+                        //controllo grandezza curriculum
                        if($curriculum_size<500000){
                            $curr_ex=pathinfo($curriculum_name,PATHINFO_EXTENSION);
                            $curr_ex_lc=strtolower($curr_ex);
                            $allowed_exs1 = array("pdf", "doc", "docx");
-
+                            //controllo estenzione file
                            if(in_array($curr_ex_lc,$allowed_exs1)){
                                $new_curr_name = uniqid("CURRICULUM-", true) . '.' . $curr_ex_lc;
                                $curr_upload_path = 'uploads/curriculum/' . $new_curr_name;
                                move_uploaded_file($tmp_name1, $curr_upload_path);
 
+                               //generazione codice randomico da inviare come otp
                                $code=rand(999999,111111);
 
+                               //inizio fase di iserimeto dati nel db
+
+                               //inserimento dati tab user
                                $sql = "insert into jobint.user (email, password, typeuser, username,code) values ('$email','$pw','Lavoratore','$username','$code');";
                                $res = mysqli_query($conn, $sql);
 
+                               //inserimeto dati tab lavoratore
                                $sql2 = "insert into lavoratore (nome, cognome, dob, sesso, codicefiscale, tel, idUser1) VALUES ('$nome','$cognome','$dob','$sesso','$cf','$nCell',(select jobint.user.iduser from user where username='$username' and email='$email'))";
                                $res = mysqli_query($conn, $sql2);
 
+                               //inserimento dati tab indirizzo
                                $sql3 = " insert into indirizzo (qualificatore, nomevia, ncivico, cap, comune, provincia, citta, idlavoratore1) 
                                 values  ('$qualificatore','$indirizzo','$numeroCivico', '$CAP' ,'$comune','$provincia','$citta',(select idlavoratore from lavoratore where codicefiscale='$cf'))";
                                $res = mysqli_query($conn, $sql3);
@@ -105,9 +121,10 @@ if(isset($_POST['submit'])){
 
                        if ($res) {
 
+                           //inizio procedura invio codice otp
                            $subject = "Profile Verification Code";
                            $message = "Here is the verification code .$code.";
-                           $sender = "From: jobint.help@gmail.com ";
+                           $sender = "From: noreply.jobint@gmail.com ";
                            if(mail($email, $subject, $message, $sender)){
                                echo"<script>alert('We have sent a passwrod reset otp to your email - $email')</script>";
                                $_SESSION['info'] = $info;

@@ -8,7 +8,16 @@ session_start();
 error_reporting(0);
 
 if (isset($_SESSION['username'])) {
-    header("Location: welcomeAzienda.php");
+    $username=$_SESSION['username'];
+    $sql="select * from user where username='$username'";
+    $res = mysqli_query($conn,$sql);
+    if($res->num_rows >0){
+        $row1=mysqli_fetch_assoc($res);
+        if($row1['typeuser']=='lavoratore'){
+            header("Location: welcomeLavoratoreHome.php");
+        }else{header("Location: welcomeAzienda.php");}
+    }
+
 }
 
 //controllo delle credenziali email e password

@@ -2,7 +2,8 @@
 
 session_start();
 include "../db/config.php";
-
+$username = $_SESSION['username'];
+$email= $_SESSION['email'];
 
 ?>
 <html lang="en">
@@ -49,7 +50,9 @@ while($row = mysqli_fetch_array($result))
             <option selected disabled>Categoria professionale</option>
 
         </select><br>
-        <button name="cerca">Cerca </button>
+        <button name="cerca" style="border-radius: 50px;
+    background-color: black;
+    border-style: none; color: white; width: 80px;">Cerca </button>
     
     </form>
 <br>
@@ -82,7 +85,7 @@ while($row = mysqli_fetch_array($result))
         <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> 
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
-        <button> <a href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
+        <button  style='border: none; background: none; padding: 0;'> <a style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
         </div>";
                 }
 
@@ -113,7 +116,7 @@ while($row = mysqli_fetch_array($result))
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
         <form action='' method='post'>
-          <button> <a href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
+          <button  style='border: none; background: none; padding: 0;'> <a  style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
         </form>
          </div>";
                 }
@@ -146,7 +149,7 @@ while($row = mysqli_fetch_array($result))
         
          <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p>
       <form action='' method='post'>
-         <button> <a href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
+         <button style='border: none; background: none; padding: 0;'> <a  style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button> 
         </form>
         </div>";
                 }

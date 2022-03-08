@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
 
                 $subject = "Profile Verification Code";
                 $message = "Here is the verification code .$code.";
-                $sender = "From: jobint.help@gmail.com ";
+                $sender = "From: noreply.jobint@gmail.com ";
                 if(mail($email, $subject, $message, $sender)){
                     echo"<script>alert('We have sent a passwrod reset otp to your email - $email')</script>";
                     $_SESSION['info'] = $info;
