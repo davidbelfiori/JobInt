@@ -4,8 +4,7 @@ include "../db/config.php";
 $username = $_SESSION['username'];
 $email= $_SESSION['email'];
 
-if(isset($_GET['id'])){
-
+if (isset($_GET['id'])) {
     $idlavoratore=$_GET['id'];
 
     $sql= "select * from user,user_image,curriculum,lavoratore,professione,indirizzo
@@ -16,42 +15,37 @@ and lavoratore.idlavoratore=curriculum.idLavoratore1
 and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore";
 
-    $res = mysqli_query($conn,$sql);
+    $res = mysqli_query($conn, $sql);
     $rescheck= mysqli_num_rows($res);
 
-if($rescheck>0){
-    while ($row = mysqli_fetch_assoc($res)){
-        if(isset($_POST['view_pdf'])){
-            $file_name=$row['pdf_url'];
+    if ($rescheck>0) {
+        while ($row = mysqli_fetch_assoc($res)) {
+            if (isset($_POST['view_pdf'])) {
+                $file_name=$row['pdf_url'];
 
-            header("content-type: application/pdf");
-            readfile("uploads/curriculum/$file_name");
-        }
+                header("content-type: application/pdf");
+                readfile("uploads/curriculum/$file_name");
+            }
 
-        if(isset($_POST['like'])){
-
-            $sql= "select * from user,azienda,ateco
+            if (isset($_POST['like'])) {
+                $sql= "select * from user,azienda,ateco
             where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='$username' and email='$email'";
-            $result = mysqli_query($conn, $sql);
-            while($row1 = mysqli_fetch_array($result))
-            {
+                $result = mysqli_query($conn, $sql);
+                while ($row1 = mysqli_fetch_array($result)) {
+                    $lavoratorenome=$row['nome'];
+                    $lavoratorecognome=$row['cognome'];
+                    $nomeAzienda=$row1['nomeAzienda'];
+                    $settore=$row1['settore'];
+                    $emaillavoratore=$row['email'];
 
-              $lavoratorenome=$row['nome'];
-              $lavoratorecognome=$row['cognome'];
-              $nomeAzienda=$row1['nomeAzienda'];
-              $settore=$row1['settore'];
-              $emaillavoratore=$row['email'];
-
-            $subject = "Interessi ad una azienda!";
-            $message = "Ciao Lavoratore: $lavoratorenome $lavoratorecognome \n l'azienda $nomeAzienda che lavora nel settore $settore ha manifestato il suo interesse per te. \n Buona fortuna dal team JobInt";
-            $sender = "From: noreply.jobint@gmail.com";
-            if(!mail($emaillavoratore, $subject, $message, $sender)){
-                echo "<script>alert('Failed while sending email!')</script>";
-            }}
-
-        }
-
-        ?>
+                    $subject = "Interessi ad una azienda!";
+                    $message = "Ciao Lavoratore: $lavoratorenome $lavoratorecognome \n l'azienda $nomeAzienda che lavora nel settore $settore ha manifestato il suo interesse per te. \n Buona fortuna dal team JobInt";
+                    $sender = "From: noreply.jobint@gmail.com";
+                    if (!mail($emaillavoratore, $subject, $message, $sender)) {
+                        echo "<script>alert('Failed while sending email!')</script>";
+                    }
+                }
+            } ?>
         <div class="user-image" style="width: 200px;
     height: 120px;">
             <img src="uploads/userimage/<?=$row['image_url']?>" alt="" style="   width: 100%;
@@ -84,4 +78,7 @@ if($rescheck>0){
         </form>
 
 
-    <?php }} }?>
+    <?php
+        }
+    }
+}?>

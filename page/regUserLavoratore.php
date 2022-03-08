@@ -4,17 +4,18 @@
 session_start();
 include "../db/config.php";
 
-if (isset($_POST['submit'])){
-        foreach ($_POST as $key =>$value){
-            $_SESSION['info'][$key]=$value;
-        }
+if (isset($_POST['submit'])) {
+    foreach ($_POST as $key =>$value) {
+        $_SESSION['info'][$key]=$value;
+    }
 
-        $keys= array_keys($_SESSION['info']);
+    $keys= array_keys($_SESSION['info']);
 
-        if(in_array('submit',$keys)){
-            unset($_SESSION['info']['submit']);
-        }
-        header("Location:regUserLavoratore2.php" );}
+    if (in_array('submit', $keys)) {
+        unset($_SESSION['info']['submit']);
+    }
+    header("Location:regUserLavoratore2.php");
+}
 
 ?>
 
