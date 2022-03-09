@@ -24,10 +24,9 @@ $sql= "select * from user,azienda,ateco
 where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='$username' and email='$email'";
 $result = mysqli_query($conn, $sql);
 $resultcheck=mysqli_num_rows($result);
-if($resultcheck > 0){
-    while($row=mysqli_fetch_assoc($result)){
-        $_SESSION['idAzienda']=$row['idAzienda'];
-        ?>
+if ($resultcheck > 0) {
+    while ($row=mysqli_fetch_assoc($result)) {
+        $_SESSION['idAzienda']=$row['idAzienda']; ?>
 
 
         <h3> Benvenuta Azienda: id. <?= $row['iduser'] ?> </h3>
@@ -38,7 +37,9 @@ if($resultcheck > 0){
 
 
 
-  <?php  } }?>
+  <?php
+    }
+}?>
 
 <h4>Hai bisogno di personale?</h4>
 <button style='border: none; background: none; padding: 0;'><a href="ricercaLavoratore.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
