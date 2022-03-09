@@ -49,4 +49,19 @@ and professione.idlavoratore1=lavoratore.idlavoratore and professione.areaprofes
 
  */
 
-select code from user where email='jobint.help@gmail.com' AND password='21232f297a57a5a743894a0e4a801fc3'
+select *
+from jobint.`like`
+where idAzienda='19' and idLavoratore='37';
+
+
+
+select * from user,azienda,`like`,lavoratore,curriculum,professione
+where `like`.idAzienda='19' and  user.iduser=azienda.idUser1   and `like`.idAzienda=azienda.idAzienda
+and `like`.idLavoratore=lavoratore.idlavoratore
+and `like`.idLavoratore= curriculum.idLavoratore1
+and professione.idlavoratore1=`like`.idLavoratore;
+
+
+delete
+from `like`
+where idLavoratore=36;

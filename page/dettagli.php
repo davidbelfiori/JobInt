@@ -36,18 +36,33 @@ if($rescheck>0){
             while($row1 = mysqli_fetch_array($result))
             {
 
+
+
+
+              $idAzienda=$row1['idAzienda'];
+
               $lavoratorenome=$row['nome'];
               $lavoratorecognome=$row['cognome'];
               $nomeAzienda=$row1['nomeAzienda'];
               $settore=$row1['settore'];
               $emaillavoratore=$row['email'];
 
-            $subject = "Interessi ad una azienda!";
+              $sql3="select * from `like` where idAzienda='$idAzienda' and idLavoratore='$idlavoratore'";
+              $result=mysqli_query($conn,$sql3);
+              if($result->num_rows>0){
+                  echo "like gia messo";
+                 header('location: ricercaLavoratore.php');
+
+
+              }else{$sql2="insert into `like` (idAzienda, idLavoratore) VALUES ('$idAzienda','$idlavoratore')";
+                  $res1=mysqli_query($conn,$sql2);
+
+                  $subject = "Interessi ad una azienda!";
             $message = "Ciao Lavoratore: $lavoratorenome $lavoratorecognome \n l'azienda $nomeAzienda che lavora nel settore $settore ha manifestato il suo interesse per te. \n Buona fortuna dal team JobInt";
             $sender = "From: noreply.jobint@gmail.com";
             if(!mail($emaillavoratore, $subject, $message, $sender)){
                 echo "<script>alert('Failed while sending email!')</script>";
-            }}
+            }}}
 
         }
 
@@ -82,6 +97,7 @@ if($rescheck>0){
             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
         </svg></button>
         </form>
+
 
 
     <?php }} }?>

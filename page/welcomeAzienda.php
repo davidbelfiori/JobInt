@@ -26,7 +26,9 @@ $result = mysqli_query($conn, $sql);
 $resultcheck=mysqli_num_rows($result);
 if($resultcheck > 0){
     while($row=mysqli_fetch_assoc($result)){
+        $_SESSION['idAzienda']=$row['idAzienda'];
         ?>
+
 
         <h3> Benvenuta Azienda: id. <?= $row['iduser'] ?> </h3>
         Nome Azienda: <?= $row['nomeAzienda'] ?><br>
@@ -44,5 +46,6 @@ if($resultcheck > 0){
         </svg></a></button>
 <br><br>
 <button style='border: none; background: none; padding: 0;' ><a href="logout.php" style="text-decoration: none">Logout</a></button>
+<a style='text-decoration: none' href='likeProfili.php'>Like</a>
 </body>
 </html>
