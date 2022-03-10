@@ -36,21 +36,11 @@ echo "<div style='text-align: center'>
    
     <form action='' method='post'>
         <button style='border: none; background: none; padding: 0;'> <a  style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'> view</a></button>
-        <button style='border: none; background: none; padding: 0;' name='unlike'> <a  style='text-decoration: none' >Unlike</a></button>
+        <button style='border: none; background: none; padding: 0;' > <a  style='text-decoration: none' href='Unlike.php?id=".$row['idlavoratore']."' >Unlike</a></button>
     </form>
 </div>";
 
-
-    if(isset($_POST['unlike'])){
-        $idLavoratore=$row['idlavoratore'];
-        $sql_query="delete from `like` where idLavoratore='$idLavoratore'";
-        $result = mysqli_query($conn,$sql_query);
-
-        header("Location: likeProfili.php");
-
-    }
-}
-} ?>
+}} ?>
 
 </body>
 </html>
