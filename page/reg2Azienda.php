@@ -153,6 +153,8 @@ if (isset($_POST['submit'])) {
                 <div class="input-group">
                     <p>Codice ATECO</p>
                     <input type="text" name="codiceATECO">
+
+
                 </div>
 
                 <div class="button">

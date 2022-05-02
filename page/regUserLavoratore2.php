@@ -7,9 +7,9 @@ error_reporting(0);
 
 //controllo se sono state compilate le informazioni alla pagina precedente
 
-if(empty($_SESSION['info'])){
+/*if(empty($_SESSION['info'])){
     header("Location: regUserLavoratore.php");
-}
+}*/
 
 
 if(isset($_SESSION['info'])){
@@ -67,6 +67,14 @@ if(isset($_POST['submit'])){
 
 
            if(!$result->num_rows > 0){
+
+
+               $today = date("Y-m-d");
+               $diff = date_diff(date_create($dob), date_create($today));
+               $age= $diff->format('%y');
+               if($age>18){
+                   echo "<script>alert('minore')</script>";
+
 
                //controllo della grandezza del immagine
                if($img_size<5000000){
@@ -143,6 +151,7 @@ if(isset($_POST['submit'])){
                            echo mysqli_error($conn);
                            echo "<script>alert('Qualcosa è andato storto.')</script>";
                        }
+
                        }     else{echo "<script>alert('errore2 curriculum')</script>";}
 
                    }else{echo "<script>alert('errore1 curriculum')</script>";}
@@ -150,6 +159,8 @@ if(isset($_POST['submit'])){
                                    }else{echo "<script>alert('errore2')</script>";}
 
                                      }else{echo "<script>alert('errore1')</script>";}
+
+               }else{echo "<script>alert('minore di 18 anni ')</script>";}
 
                                            }else{echo "<script>alert('numero di telefono gia inserito')</script>"; }
 
