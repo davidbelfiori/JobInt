@@ -47,5 +47,6 @@ if($resultcheck > 0){
 <br><br>
 <button style='border: none; background: none; padding: 0;' ><a href="logout.php" style="text-decoration: none">Logout</a></button>
 <a style='text-decoration: none' href='likeProfili.php'>Like</a>
+<a style='text-decoration: none' href='chat.php'>chat</a>
 </body>
 </html>
