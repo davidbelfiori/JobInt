@@ -1,6 +1,10 @@
 version = 1
 
 [[analyzers]]
+name = "javascript"
+enabled = true
+
+[[analyzers]]
 name = "sql"
 enabled = true
 
@@ -10,4 +14,12 @@ enabled = true
 
 [[transformers]]
 name = "php-cs-fixer"
+enabled = true
+
+[[transformers]]
+name = "prettier"
+enabled = true
+
+[[transformers]]
+name = "standardjs"
 enabled = true
