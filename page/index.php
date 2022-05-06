@@ -10,32 +10,30 @@ error_reporting(0);
 if (isset($_SESSION['username'])) {
     $username=$_SESSION['username'];
     $sql="select * from user where username='$username'";
-    $res = mysqli_query($conn,$sql);
-    if($res->num_rows >0){
+    $res = mysqli_query($conn, $sql);
+    if ($res->num_rows >0) {
         $row1=mysqli_fetch_assoc($res);
-        if($row1['typeuser']=='lavoratore'){
+        if ($row1['typeuser']=='lavoratore') {
             header("Location: welcomeLavoratoreHome.php");
-        }else{header("Location: welcomeAzienda.php");}
+        } else {
+            header("Location: welcomeAzienda.php");
+        }
     }
-
 }
 
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
-
-
-
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
 
     $sql1="select  * from user where email='$email' AND password='$password'";
-    $result1=mysqli_query($conn,$sql1);
-    if($result1->num_rows>0){
+    $result1=mysqli_query($conn, $sql1);
+    if ($result1->num_rows>0) {
         $row= mysqli_fetch_assoc($result1);
 
         $code=$row['code'];
-        if($code!=0) {
+        if ($code!=0) {
             $_SESSION['email']=$row['email'];
             header("location: verificationcode.php");
             exit;
@@ -44,26 +42,17 @@ if (isset($_POST['submit'])) {
         $_SESSION['user_id']=$row['iduser'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['email']=$row['email'];
-        mysqli_query($conn,"insert into login_details(iduser1) VALUES ('".$row['iduser']."')");
+        mysqli_query($conn, "insert into login_details(iduser1) VALUES ('".$row['iduser']."')");
         $last_id = mysqli_insert_id($conn);
         $_SESSION['login_details_id'] = $last_id;
-        if($row['typeuser']=='lavoratore'){
+        if ($row['typeuser']=='lavoratore') {
             header("location: welcomeLavoratoreHome.php");
-
-
-
-
-        }else{
-
+        } else {
             header("Location: welcomeAzienda.php");
-
-
         }
-
     } else {
         echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
     }
-
 }
 
 ?>
