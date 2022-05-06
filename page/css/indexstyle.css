@@ -1,85 +1,84 @@
-*{
-    margin: 0;
+* {
+  margin: 0;
 }
-.container{
-    margin-top: 50px;
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-bottom: 50px;
-    max-width: 1200px;
-    font-family: 'PT Sans', sans-serif;
+.container {
+  margin-top: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-bottom: 50px;
+  max-width: 1200px;
+  font-family: "PT Sans", sans-serif;
 }
-a{
-    text-decoration: none;
-    color: black;
-    font-family: 'Open Sans', sans-serif;
+a {
+  text-decoration: none;
+  color: black;
+  font-family: "Open Sans", sans-serif;
 }
-p{
-    font-family: 'Open Sans', sans-serif;
+p {
+  font-family: "Open Sans", sans-serif;
 }
 
-title{
-
+title {
 }
-a:hover{
-    transition: 0.3s, 0.3s;
-    color: rgb(177, 174, 174);
+a:hover {
+  transition: 0.3s, 0.3s;
+  color: rgb(177, 174, 174);
 }
-.logo{
-    width: 450px;
+.logo {
+  width: 450px;
 }
-.nav{
-    display: flex;
-    flex-direction:row;
-    justify-content: space-between;
-    align-items: center;
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-.menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 300px;
-    height: 25px;
-    border-bottom: 1px solid grey;
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  height: 25px;
+  border-bottom: 1px solid grey;
 }
-#scritta-nav{
-    color: white;
+#scritta-nav {
+  color: white;
 }
-.content{
-    margin-top: 75px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
+.content {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
 }
-.logo-container{
-    border-right: 1px solid grey;
+.logo-container {
+  border-right: 1px solid grey;
 }
-.form-container{
-    line-height: 35px;
+.form-container {
+  line-height: 35px;
 }
-.logo-accesso{
-    width: 80px;
+.logo-accesso {
+  width: 80px;
 }
-input{
-    border-radius: 15px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(245, 245, 245, 0.87);
-    height: 35px;
-    width: 325px;
-    margin-bottom: 10px;
+input {
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(245, 245, 245, 0.87);
+  height: 35px;
+  width: 325px;
+  margin-bottom: 10px;
 }
-button{
-    border-radius: 50px;
-    border-style: none;
-    background-color: black;
-    width: 80px;
-    height: 30px;
+button {
+  border-radius: 50px;
+  border-style: none;
+  background-color: black;
+  width: 80px;
+  height: 30px;
 }
-#button-text{
-    color: white;
+#button-text {
+  color: white;
 }
 
 /* Dropdown Button */
