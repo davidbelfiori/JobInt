@@ -11,9 +11,8 @@ function fetch_user_last_activity($user_id, $conn)
 	ORDER BY last_activity DESC 
 	LIMIT 1
 	";
-   $result= mysqli_query($conn,$query);
-    while($row = mysqli_fetch_assoc($result)){
+    $result= mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($result)) {
         return $row['last_activity'];
     }
 }
-?>
