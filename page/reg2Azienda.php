@@ -40,15 +40,15 @@ if (isset($_POST['submit'])) {
             insert into jobint.user (email, password, typeuser, username,code) values ('$email','$pw','azienda','$username','$code');";
             $result = mysqli_query($conn, $sql);
 
-            $sql="select * from jobint.azienda where nomeAzienda='$nomeAzienda'";
+            $sql= "select * from jobint.azienda where nome='$nomeAzienda'";
             $result= mysqli_query($conn,$sql);
             if(!$result->num_rows >0){
 
 
-            $sql2 = "insert into jobint.azienda (nomeAzienda, numeroSedi, numeroDipendenti, luogoSedi, idUser1)
+            $sql2 = "insert into jobint.azienda (nome, numeroSedi, numeroDipendenti, luogoSedi, idUser1)
             values ('$nomeAzienda', '$nsedi' , '$ndipendenti' ,'$luogosedi',(select iduser from user where email='$email'));";
             $sql3 = "insert into jobint.ateco (idCodiceATECO,codiceATECO, settore)
-            values ((select idAzienda from azienda where nomeAzienda='$nomeAzienda'),'$codiceAteco','$settore');";
+            values ((select idAzienda from azienda where nome='$nomeAzienda'),'$codiceAteco','$settore');";
 
             $result2 = mysqli_query($conn, $sql2);
             $result3 = mysqli_query($conn, $sql3);

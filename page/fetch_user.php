@@ -6,13 +6,21 @@ include "../db/database_connection.php";
 
 session_start();
 
-$query = "
+
+ $res1=  mysqli_query($conn,"select * from user where iduser='".$_SESSION['user_id']."'");
+$row=mysqli_fetch_assoc($res1);
+if($row['typeuser']=='azienda'){
+    $query = "
 SELECT * FROM `like`,lavoratore,user 
 WHERE  lavoratore.idlavoratore=`like`.idLavoratore and iduser = lavoratore.idUser1 and `like`.idAzienda = '".$_SESSION['idAzienda']."' 
 ";
+}else{
 
-
-
+$query="
+    select *
+    from `like`,azienda,user
+where `like`.idAzienda=azienda.idAzienda and iduser=azienda.idUser1 and idLavoratore='".$_SESSION['idlavoratore']."' ;";
+}
 
 
 $result= mysqli_query($conn,$query);

@@ -45,6 +45,8 @@ if($rescheck>0){
             readfile("uploads/curriculum/$file_name");
         }
 
+
+
         ?>
         <div class="user-image">
         <img src="uploads/userimage/<?=$row['image_url']?>" alt="">

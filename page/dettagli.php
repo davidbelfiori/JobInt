@@ -43,7 +43,7 @@ if($rescheck>0){
 
               $lavoratorenome=$row['nome'];
               $lavoratorecognome=$row['cognome'];
-              $nomeAzienda=$row1['nomeAzienda'];
+              $nomeAzienda=$row1['nome'];
               $settore=$row1['settore'];
               $emaillavoratore=$row['email'];
 

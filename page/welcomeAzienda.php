@@ -31,7 +31,7 @@ if($resultcheck > 0){
 
 
         <h3> Benvenuta Azienda: id. <?= $row['iduser'] ?> </h3>
-        Nome Azienda: <?= $row['nomeAzienda'] ?><br>
+        Nome Azienda: <?= $row['nome'] ?><br>
         N. dipendenti: <?= $row['numeroDipendenti'] ?><br>
         Settore: <?= $row['settore'] ?><br>
         Sedi: <?= $row['luogoSedi'] ?><br>

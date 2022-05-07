@@ -38,10 +38,11 @@ $rescheck= mysqli_num_rows($res);
 
 if($rescheck>0){
     while ($row = mysqli_fetch_assoc($res)){
-
+        $_SESSION['idlavoratore']=$row['idlavoratore']
         ?>
 
 <button><a href="welcomeLavoratore.php">Il mio profilo</a></button>
+        <a href="chat.php">chat</a>
         <h3>Informazioni Personali </h3>
         Email: <?=  $row['email']?><br>
         Cognome: <?= $row['cognome'] ?><br>
