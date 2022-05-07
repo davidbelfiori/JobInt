@@ -1,4 +1,5 @@
 <?php
+
 include('../db');
 
 session_start();
