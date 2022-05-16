@@ -28,12 +28,10 @@ $sql= "select * from user,azienda,ateco
 where user.iduser=azienda.idUser1 and ateco.idCodiceATECO=azienda.idAzienda and username='$username' and email='$email'";
 $result = mysqli_query($conn, $sql);
 $resultcheck=mysqli_num_rows($result);
-if($resultcheck > 0){
-    while($row=mysqli_fetch_assoc($result)){
+if ($resultcheck > 0) {
+    while ($row=mysqli_fetch_assoc($result)) {
         $_SESSION['idAzienda']=$row['idAzienda'];
-        $idAzienda=$row['idAzienda'];
-
-        ?>
+        $idAzienda=$row['idAzienda']; ?>
 <div class="navbar">
     <div class="logo-container">
         <div class="logo">
@@ -70,7 +68,6 @@ and professione.idlavoratore1=`like`.idLavoratore";
         $queryResult = mysqli_num_rows($result);
         if ($queryResult > 0) {
             while ($row1 = mysqli_fetch_assoc($result)) {
-
                 echo "<div style='text-align: center'>
     &ensp;
     <h3>" . $row1["nome"] . " " . $row1["cognome"] . "</h3>
@@ -82,8 +79,8 @@ and professione.idlavoratore1=`like`.idLavoratore";
         <button style='border: none; background: none; padding: 0;' > <a  style='text-decoration: none' href='Unlike.php?id=".$row1['idlavoratore']."' >unlike</a></button>
     </form>
 </div>";
-
-            }} ?>
+            }
+        } ?>
 
 
 
@@ -136,7 +133,9 @@ and professione.idlavoratore1=`like`.idLavoratore";
         </div>
     </div>
 
-    <?php  } }?>
+    <?php
+    }
+}?>
 
 
 
