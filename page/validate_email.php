@@ -4,9 +4,7 @@
 function ValidateEmail($email)
 {
     if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-
         exit("invalid format");
-
     }
 
     $api_key = "0a1de96d2202412897b83dd89800ab2b";
@@ -26,15 +24,11 @@ function ValidateEmail($email)
     $data = json_decode($response, true);
 
     if ($data['deliverability'] === "UNDELIVERABLE") {
-
         return("Undeliverable");
-
     }
 
     if ($data["is_disposable_email"]["value"] === true) {
-
         return("Disposable");
-
     }
 
     return("valid");

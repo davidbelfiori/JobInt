@@ -2,14 +2,13 @@
 include "../db/config.php";
 session_start();
 
-if(isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $idazienda= $_SESSION['idAzienda'];
     $idLavoratore=$_GET['id'];
     $sql_query="delete from `like` where idLavoratore='$idLavoratore' and idAzienda='$idazienda'";
-    $result = mysqli_query($conn,$sql_query);
+    $result = mysqli_query($conn, $sql_query);
 
     header("Location: welcomeAzienda.php");
-
 }
 ?>
 
