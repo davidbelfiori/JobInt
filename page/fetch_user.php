@@ -55,7 +55,8 @@ while($row=mysqli_fetch_assoc($result)){
 
     $output .= '
 	<tr>
-		<td>'.$row['nome'].'</td>
+	
+		<td> '.$row['nome'].' '.count_unseen_message($row['iduser'], $_SESSION['user_id'], $conn).'  '.fetch_is_type_status($row['iduser'], $conn).'</td>
 		<td>'.$status.'</td>
 		<td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['iduser'].'" data-tousername="'.$row['nome'].'">Start Chat</button></td>
 	</tr>

@@ -169,6 +169,48 @@ function fetch_group_chat_history($conn)
     return $output;
 }
 
+function count_unseen_message($from_user_id, $to_user_id, $conn)
+{
+    $query = "
+ SELECT * FROM chat_message 
+ WHERE from_user_id = '$from_user_id' 
+ AND to_user_id = '$to_user_id' 
+ AND status = '1'
+ ";
+
+    $statement= mysqli_query($conn, $query);
+    $count = mysqli_num_rows($statement);
+    $output = '';
+    if($count > 0)
+    {
+        $output = '<span class="label label-success">'.$count.'</span>';
+    }
+    return $output;
+}
+
+
+function fetch_is_type_status($user_id, $conn)
+{
+    $query = "
+ SELECT is_type FROM login_details 
+ WHERE iduser1 = '".$user_id."' 
+ ORDER BY last_activity DESC 
+ LIMIT 1
+ ";
+
+
+    $statement=mysqli_query($conn,$query);
+
+    $output = '';
+    while($row=mysqli_fetch_assoc($statement))
+    {
+        if($row["is_type"] == 'yes')
+        {
+            $output = ' - <small><em><span class="text-muted">Typing...</span></em></small>';
+        }
+    }
+    return $output;
+}
 
 
 ?>

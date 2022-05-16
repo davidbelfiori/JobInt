@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
         $last_id = mysqli_insert_id($conn);
         $_SESSION['login_details_id'] = $last_id;
         if($row['typeuser']=='lavoratore'){
-            header("location: welcomeLavoratoreHome.php");
+            header("location: welcomeLavoratore.php");
 
 
 

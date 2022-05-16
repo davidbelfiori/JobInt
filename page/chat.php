@@ -10,6 +10,7 @@ if(!isset($_SESSION['user_id'])){
 
 
 <html>
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +28,10 @@ if(!isset($_SESSION['user_id'])){
 <div class="container">
     <br />
 
+
+
+
+
     <h3 align="center">Chat Jobint</h3><br />
     <br />
     <div class="row">
@@ -34,7 +39,8 @@ if(!isset($_SESSION['user_id'])){
             <h4>Online User</h4>
         </div>
         <div class="col-md-2 col-sm-3">
-            <p align="right">Hi - <?php echo $_SESSION['username']; ?> - <a href="logout.php">Logout</a></p>
+            <p align="right">Hi - <?php echo $_SESSION['username']; ?> - <a href="logout.php">Logout</a> <a onclick="history.back()">Back</a></p>
+
         </div>
     </div>
     <div class="table-responsive">
@@ -57,7 +63,7 @@ if(!isset($_SESSION['user_id'])){
         position: relative;
         width: 100%;
         height: auto;
-        background-color: #FFF;
+        background-color: rgb(230, 230, 230);
         border: 1px solid #CCC;
         border-radius: 3px;
     }
