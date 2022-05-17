@@ -1,0 +1,173 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    padding: 100px;
+    padding-top: 0;
+}
+.circle{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+
+}
+
+.form-control{
+    height: 30px;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 96%;
+    height: 150px;
+}
+.logo-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+.menu{
+    width: 15%;
+    height: 37px;
+    border-bottom: 1px solid black;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+}
+.logo{
+    width: 60%;
+    margin-top: 5px;
+}
+.logo-image{
+    width: 100%;
+}
+.home{
+    margin-top: 4px;
+    width: 32px;
+}
+.tile-container{
+    width: 50%;
+}
+.title{
+    font-family: 'Lato', sans-serif;
+}
+.logo-img{
+    width: 100%;
+}
+#home{
+    width: 100%;
+}
+.sinistra-titolo{
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+}
+p{
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+}
+.obbligatorio{
+    font-size: 13px;
+}
+.container-ricerca{
+    margin-top: 25px;
+    margin-left: 55px;
+    width: 80%;
+    height: 400px;
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5%;
+    border-radius: 30px;
+}
+.sinistra{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid grey;
+
+}
+.input-group{
+    line-height: 15px;
+
+}
+.destra{
+    width: 60%;
+    justify-content:left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.persone{
+    display: flex;
+    flex-direction: row;
+    height: 140px;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 20px;
+}
+.descrizione{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+.nome{
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+}
+.campo{
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+}
+.azioni{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50px;
+    margin-bottom: 10px;
+}
+.visibility-image{
+    width: 20px;
+}
+.message-image{
+    width: 20px;
+}
+.circle-nav{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+}
+select{
+    border-style: none;
+    border-radius: 30px;
+    height: 50px;
+    width: 300px;
+    padding: 2%;
+}
+button{
+    background-color: black;
+    border-radius: 30px;
+    border-style: none;
+    width: 120px;
+    height: 35px;
+}
+#a-cerca{
+    color: white;
+    text-decoration: none;
+}
+#messaggi, #notifiche, #profilo{
+    width: 30px;
+}

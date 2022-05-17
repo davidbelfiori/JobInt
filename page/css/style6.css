@@ -24,6 +24,8 @@ body{
 #messaggi, #notifiche, #profilo{
     width: 30px;
 }
+
+
 .logo-container{
     display: flex;
     flex-direction: row;
@@ -66,9 +68,20 @@ nav{
     background-color: rgb(230, 230, 230);
     padding: 1.5%;
     border-radius: 30px;
+
+
+}
+.box-chat{
+    overflow: auto;
 }
 .immagine-profilo{
     width: 30px;
+}
+
+.scroll-div{
+
+
+    text-align: center
 }
 .chat-titolo{
     border-bottom: solid 1px grey;

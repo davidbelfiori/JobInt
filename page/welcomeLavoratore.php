@@ -41,6 +41,7 @@ $rescheck= mysqli_num_rows($res);
 
 if($rescheck>0){
     while ($row = mysqli_fetch_assoc($res)){
+        $_SESSION['idlavoratore']=$row['idlavoratore'];
         if(isset($_POST['view_pdf'])){
             $file_name=$row['pdf_url'];
 
@@ -79,11 +80,11 @@ if($rescheck>0){
                 <div class="container-utente">
                     <div class="sinistra">
                         <div class="sopra-sinistra">
-                            <div class="circle">
 
-                                    <img src="uploads/userimage/<?=$row['image_url']?>" alt="Avatar">
 
-                            </div>
+                                    <img src="uploads/userimage/<?=$row['image_url']?>" alt="Avatar" style="width: 150px;height: 150px; border-radius: 50% ;overflow: hidden;">
+
+
                         </div>
                         <div class="sotto-sinistra">
                             <div class="titolo-utente">
