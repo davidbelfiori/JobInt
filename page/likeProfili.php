@@ -35,9 +35,8 @@ and professione.idlavoratore1=`like`.idLavoratore";
 $result = mysqli_query($conn, $sql);
 $queryResult = mysqli_num_rows($result);
 if ($queryResult > 0) {
-while ($row = mysqli_fetch_assoc($result)) {
-
-echo "<div style='text-align: center'>
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<div style='text-align: center'>
     &ensp;
     <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3>
 
@@ -48,8 +47,8 @@ echo "<div style='text-align: center'>
         <button style='border: none; background: none; padding: 0;' > <a  style='text-decoration: none' href='Unlike.php?id=".$row['idlavoratore']."' >Unlike</a></button>
     </form>
 </div>";
-
-}} ?>
+    }
+} ?>
 
 </body>
 </html>
