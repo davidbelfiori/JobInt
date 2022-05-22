@@ -327,10 +327,16 @@ if(isset($_POST['submit'])){
 
                     </div>
                     <br>
+                    <div class="input-group" id="datipersonali">
+                        <p style="width: 60%"> Autorizzo il trattamento dei miei dati personali ai sensi del D. Lgs. 196/2003, come modificato dal D. Lgs. 101/2018 e ai sensi del Regolamento UE 2016/679 (GDPR)</p>
+                        <input type="checkbox" name="gdpr" required>Accetto
+                    </div>
+                    <br>
                     <br>
                     <div class="input-group" id="bottone">
                         <button type="submit" name="submit"><a class="button-a">Registrati</a></button>
                     </div>
+
             </form>
         </div>
     </div>
