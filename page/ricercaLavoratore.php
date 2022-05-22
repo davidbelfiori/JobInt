@@ -53,8 +53,7 @@ $email= $_SESSION['email'];
     $area = '';
     $query = "SELECT area FROM categoriaprofessionale GROUP BY area ORDER BY area ASC";
     $result = mysqli_query($conn, $query);
-    while($row = mysqli_fetch_array($result))
-    {
+    while ($row = mysqli_fetch_array($result)) {
         $area .= '<option value="'.$row["area"].'">'.$row["area"].'</option>';
     }
     ?>
@@ -100,7 +99,6 @@ $email= $_SESSION['email'];
 
     <?php
     if (isset($_POST['cerca'])) {
-
         $areaProfessionale = null;
         $categoriaProfessionale = null;
         $sottoAreaProfessionale = null;
@@ -119,8 +117,6 @@ $email= $_SESSION['email'];
             $queryResult1 = mysqli_num_rows($result1);
             if ($queryResult1 > 0) {
                 while ($row = mysqli_fetch_assoc($result1)) {
-
-
                     echo " <div class='persone'>
         <div class='circle'> </div>
        <div class='descrizione'>
@@ -130,10 +126,7 @@ $email= $_SESSION['email'];
         <div class='azioni'>  <a style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'><img src='../Resource/view.png' id='notifiche' ></a> </div>
         </div>";
                 }
-
             }
-
-
         }
 
         if (isset($_POST['Area_professionale']) and isset($_POST['Sotto_area_professionale']) and empty($_POST['Categoria_professionale'])) {
@@ -151,7 +144,6 @@ $email= $_SESSION['email'];
             $queryResult2= mysqli_num_rows($result1);
             if ($queryResult2 > 0) {
                 while ($row = mysqli_fetch_assoc($result1)) {
-
                     echo "<div> 
          <div class='descrizione'>
        <div class='nome'>  <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> </div>
@@ -163,10 +155,7 @@ $email= $_SESSION['email'];
          </div>
          </div>";
                 }
-
             }
-
-
         }
         if (isset($_POST['Area_professionale']) and isset($_POST['Sotto_area_professionale']) and isset($_POST['Categoria_professionale'])) {
             $areaProfessionale = $_POST['Area_professionale'];
@@ -185,7 +174,6 @@ $email= $_SESSION['email'];
             $queryResult = mysqli_num_rows($result);
             if ($queryResult > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-
                     echo "<div> 
 <div class='descrizione'>
         &ensp;
@@ -197,11 +185,8 @@ $email= $_SESSION['email'];
         </form>
         </div></div>";
                 }
-
             }
         }
-
-
     }?>
     
 </div>

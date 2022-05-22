@@ -5,7 +5,7 @@ include '../db/config.php';
 //avvio della sessione
 session_start();
 $email = $_SESSION['email'];
-if($email == false){
+if ($email == false) {
     header('Location: index.php');
 }
 error_reporting(0);
@@ -13,26 +13,20 @@ error_reporting(0);
 
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
-
-    $otp = mysqli_real_escape_string($conn,$_POST['otp']);
+    $otp = mysqli_real_escape_string($conn, $_POST['otp']);
     $check_code = "SELECT * FROM user WHERE code = $otp";
     $code_res = mysqli_query($conn, $check_code);
-    if(mysqli_num_rows($code_res)>0){
+    if (mysqli_num_rows($code_res)>0) {
         $code = 0;
         $update_profile = "UPDATE user SET code = $code WHERE email = '$email'";
         $run_query = mysqli_query($conn, $update_profile);
-        if($run_query){
+        if ($run_query) {
             echo "<script>alert('ora puoi accedere su jobint!')</script>";
         }
         header('location: index.php');
-
-
-
-
-
-    }else{
-        echo "<script>alert('codice errato!')</script>";}
-
+    } else {
+        echo "<script>alert('codice errato!')</script>";
+    }
 }
 
 ?>
