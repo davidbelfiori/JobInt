@@ -1,4 +1,5 @@
 <?php
+
 include "../db/config.php";
 include "../db/database_connection.php";
 
