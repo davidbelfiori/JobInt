@@ -105,7 +105,9 @@ if (isset($_POST['submit'])) {
             <img class="logo" src="../Resource/logo.png">
         </div>
         <div class="form-container">
-            <img class="logo-accesso" src="../Resource/accesso.png">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg>
             <form action="" method="POST" class="login-email" >
                 <div class="input-group">
                     <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
@@ -114,12 +116,13 @@ if (isset($_POST['submit'])) {
                     <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
 
                 </div>
+                <p>Non hai un account JobInt? <a href="regUserLavoratore.php">Lavoratore</a> <a href="reg1UA.php">Azienda</a></p>
+                <p>Hai dimenticato la password? <a href="forgot-password.php">Recupera</a></p>
                 <div class="input-group">
                     <button name="submit" class="btn"><a id="button-text">Accedi</a></button>
                 </div>
             </form>
-            <p>Non hai un account JobInt? <a href="regUserLavoratore.php">Lavoratore</a> <a href="reg1UA.php">Azienda</a></p>
-            <p>Hai dimenticato la password? <a href="forgot-password.php">Recupera</a></p>
+
         </div>
     </div>
 </div>

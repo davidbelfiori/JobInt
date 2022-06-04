@@ -59,9 +59,9 @@ if($resultcheck > 0){
     </div>
 </div>
 <div class="content">
-    <div class="box-chat" style="overflow:auto; scrollbar-base-color: black  ;
+    <div class="box-chat" style="overflow:auto; scrollbar-base-color: black   ;
  font-family: 'Open Sans', sans-serif;">
-        <h2 style="font-family: 'Lato', sans-serif;">Persone a cui hai messo like</h2>
+        <h2 style="font-family: 'Lato', sans-serif;">Persone che stai seguendo</h2>
         <?php
         $sql = "select * from user,azienda,`like`,lavoratore,curriculum,professione
 where `like`.idAzienda='$idAzienda' and  user.iduser=azienda.idUser1   and `like`.idAzienda=azienda.idAzienda
@@ -129,10 +129,10 @@ and professione.idlavoratore1=`like`.idLavoratore";
                         <p><?= $row['numeroDipendenti'] ?></p>
                     </div>
                     <div class="title-group">
-                        <p><?= $row['settore'] ?></p>
+                        <p><?= $row['luogoSedi'] ?></p>
                     </div>
                     <div class="title-group">
-                        <p> <?= $row['luogoSedi'] ?></p>
+                        <p> <?= $row['settore'] ?></p>
                     </div>
                 </div>
             </div>

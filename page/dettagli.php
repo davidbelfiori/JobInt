@@ -132,7 +132,7 @@ if($rescheck>0){
             </div>
             <div class="destra">
                 <div class="sopra-destra">
-                    <h3><?= $row['nome']. $row['cognome']?></h3>
+                    <h2 style=" font-family: 'Lato', sans-serif;"><?= $row['nome']?> <?= $row['cognome']?></h2>
                 </div>
                 <div class="sotto-destra">
                     <div class="descrizione">

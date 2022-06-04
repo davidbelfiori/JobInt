@@ -4,7 +4,7 @@
 }
 .container{
 
-    padding:  100px;
+    padding:  330px;
     padding-top: 0;
     max-width: 1200px;
 }
@@ -13,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     height: 100px;
+    font-family: 'Lato', sans-serif;
 }
 .logo-container{
     display: flex;
@@ -33,9 +34,10 @@
     width: 100%;
 }
 .menu{
-    font-size: 15px;
+    font-size: 17px;
     width: 30%;
     text-align: right;
+    font-family: 'Lato', sans-serif;
 }
 nav{
     display: flex;

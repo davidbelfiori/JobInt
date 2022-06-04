@@ -152,16 +152,14 @@ $email= $_SESSION['email'];
             if ($queryResult2 > 0) {
                 while ($row = mysqli_fetch_assoc($result1)) {
 
-                    echo "<div> 
-         <div class='descrizione'>
-       <div class='nome'>  <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> </div>
+                    echo "<div class='persone'>
+        <div class='circle'> </div>
+       <div class='descrizione'>
+       <div class='nome'> <p>" . $row["nome"] . " " . $row["cognome"] . "</p> </div>
         
-        <div class='campo'> <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p></div>
-        <form action='' method='post'>
-        <div class='azioni'> <a  style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'> <img src='../Resource/view.png' alt='' id='notifiche'></a></div>
-        </form>
-         </div>
-         </div>";
+       <div class='campo'> <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p></div> </div>
+        <div class='azioni'>  <a style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'><img src='../Resource/view.png' id='notifiche' ></a> </div>
+        </div>";
                 }
 
             }
@@ -186,16 +184,14 @@ $email= $_SESSION['email'];
             if ($queryResult > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
 
-                    echo "<div> 
-<div class='descrizione'>
-        &ensp;
-       <div class='nome'> <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3> </div>
+                    echo "<div class='persone'>
+        <div class='circle'> </div>
+       <div class='descrizione'>
+       <div class='nome'> <p>" . $row["nome"] . " " . $row["cognome"] . "</p> </div>
         
-       <div class='campo'>  <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p></div>
-      <form action='' method='post'>
-        <div class='azioni'> <a  style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."' > <img src='../Resource/view.png' alt='' id='notifiche'></a></div>
-        </form>
-        </div></div>";
+       <div class='campo'> <p>" . $row['areaprofessionale'] . "  &ensp;     " . $row['sottoarea'] . "   &ensp;      " . $row['categoria'] . "</p></div> </div>
+        <div class='azioni'>  <a style='text-decoration: none' href='dettagli.php?id=".$row['idlavoratore']."'><img src='../Resource/view.png' id='notifiche' ></a> </div>
+        </div>";
                 }
 
             }
