@@ -1,4 +1,5 @@
 <?php
+
 //insert_chat.php
 
 include('../db/database_connection.php');
@@ -21,9 +22,6 @@ VALUES (:to_user_id, :from_user_id, :chat_message, :status)
 
 $statement = $connect->prepare($query);
 
-if($statement->execute($data))
-{
+if ($statement->execute($data)) {
     echo fetch_user_chat_history($_SESSION['user_id'], $_POST['to_user_id'], $conn);
 }
-
-?>
