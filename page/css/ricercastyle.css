@@ -13,9 +13,7 @@ body{
 
 }
 
-.form-control{
-    height: 30px;
-}
+
 .navbar{
     display: flex;
     flex-direction: row;

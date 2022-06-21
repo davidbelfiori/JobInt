@@ -107,11 +107,11 @@ if($rescheck>0){
         <div class="container-utente">
             <div class="sinistra">
                 <div class="sopra-sinistra">
-                    <div class="circle">
 
-                        <img src="uploads/userimage/<?=$row['image_url']?>" style="border-radius: 50%" alt="Avatar">
 
-                    </div>
+                    <img src="uploads/userimage/<?=$row['image_url']?>" alt="Avatar" style="width: 150px;height: 150px; border-radius: 50% ;overflow: hidden;">
+
+
                 </div>
                 <div class="sotto-sinistra">
                     <div class="titolo-utente">

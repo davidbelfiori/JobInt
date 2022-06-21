@@ -36,7 +36,7 @@ $email= $_SESSION['email'];
     </div>
     <div class="menu">
         <nav>
-            <div onclick="location.href=' chat.php'" class="messaggi"><img src="../Resource/email.png" alt="messaggi" id="messaggi"></div>
+            <div onclick="location.href=' chat.php'" class="messaggi"><img src="../Resource/email.png" alt="messaggi" id="messaggi" ></div>
             <div onclick="location.href=' '" class="notifiche"><img src="../Resource/notification.png" alt="notifiche" id="notifiche"></div>
             <div onclick="location.href='welcomeAzienda.php'" class="notifiche"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
@@ -68,20 +68,20 @@ $email= $_SESSION['email'];
     <form action="ricercaLavoratore.php" method="post">
    <div class="input-group">
        <p> Area professionale </p>
-        <select name="Area_professionale" id="Area_professionale"  class="form-control action" required >
+        <select name="Area_professionale" id="Area_professionale"  class="form-control action" required  style="height: 45px;">
             <option selected disabled>Area Professionale</option>
             <?php echo $area; ?>
         </select></div>
         <div class="input-group">
            <p> Sotto-area professionale </p>
-            <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" >
+            <select name="Sotto_area_professionale" id="Sotto_area_professionale" class="form-control action" style="height: 45px;">
                 <option selected disabled>Sotto Area professionale</option>
 
             </select>
         </div>
         <div class="input-group">
           <p>  Categoria Professionale</p>
-            <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" >
+            <select name="Categoria_professionale" id="Categoria_professionale" class="form-control" style="height: 45px;">
                 <option selected disabled>Categoria professionale</option>
 
             </select></div><br>
