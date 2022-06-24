@@ -59,6 +59,10 @@ nav{
     height: 150px;
     border-radius: 50%;
 }
+.sopra-destra h3{
+    color: black;
+    font-family: 'Lato', sans-serif;
+}
 .container-utente{
     margin: 0 auto;
     background-color: rgba(230, 230, 230, 0.9);

@@ -1,3 +1,24 @@
+create table categoriaprofessionale
+(
+    idprofessione int auto_increment
+        primary key,
+    area          varchar(150) not null,
+    sotto_area    varchar(150) null,
+    categoria     varchar(150) null
+)
+    charset = utf8mb4;
+
+create table chat_message
+(
+    chat_message_id int auto_increment
+        primary key,
+    to_user_id      int                                 not null,
+    from_user_id    int                                 not null,
+    chat_message    mediumtext                          not null,
+    timestamp       timestamp default CURRENT_TIMESTAMP not null,
+    status          int                                 not null
+);
+
 create table user
 (
     iduser   int auto_increment
@@ -11,13 +32,14 @@ create table user
         unique (username),
     constraint users_email_uindex
         unique (email)
-);
+)
+    charset = utf8mb4;
 
 create table azienda
 (
     idAzienda        int auto_increment
         primary key,
-    nomeAzienda      varchar(255) not null,
+    nome             varchar(255) not null,
     numeroSedi       int          not null,
     numeroDipendenti int          not null,
     luogoSedi        varchar(255) not null,
@@ -25,7 +47,8 @@ create table azienda
     constraint azienda_users_id_fk
         foreign key (idUser1) references user (iduser)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
 
 create table ateco
 (
@@ -36,7 +59,8 @@ create table ateco
     constraint ateco_azienda_idAzienda_fk
         foreign key (idCodiceATECO) references azienda (idAzienda)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
 
 create table lavoratore
 (
@@ -56,7 +80,8 @@ create table lavoratore
     constraint lavoratore_user_iduser_fk
         foreign key (idUser1) references user (iduser)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
 
 create table curriculum
 (
@@ -67,7 +92,8 @@ create table curriculum
     constraint curriculum_lavoratore_idlavoratore_fk
         foreign key (idLavoratore1) references lavoratore (idlavoratore)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
 
 create table indirizzo
 (
@@ -86,7 +112,34 @@ create table indirizzo
     constraint indirizzo_lavoratore_idlavoratore_fk
         foreign key (idlavoratore1) references lavoratore (idlavoratore)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
+
+create table `like`
+(
+    idAzienda    int not null,
+    idLavoratore int not null,
+    constraint like_azienda_idAzienda_fk
+        foreign key (idAzienda) references azienda (idAzienda)
+            on update cascade on delete cascade,
+    constraint like_lavoratore_idlavoratore_fk
+        foreign key (idLavoratore) references lavoratore (idlavoratore)
+            on update cascade on delete cascade
+)
+    charset = utf8mb4;
+
+create table login_details
+(
+    login_details_id int auto_increment
+        primary key,
+    iduser1          int                                 not null,
+    last_activity    timestamp default CURRENT_TIMESTAMP not null,
+    is_type          enum ('no', 'yes')                  not null,
+    constraint login_details_user_iduser_fk
+        foreign key (iduser1) references user (iduser)
+            on update cascade
+)
+    charset = latin1;
 
 create table professione
 (
@@ -99,7 +152,8 @@ create table professione
     constraint professione_lavoratore_idlavoratore_fk
         foreign key (idlavoratore1) references lavoratore (idlavoratore)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
 
 create table user_image
 (
@@ -110,16 +164,10 @@ create table user_image
     constraint user_image_user_iduser_fk
         foreign key (idUser1) references user (iduser)
             on update cascade on delete cascade
-);
+)
+    charset = utf8mb4;
 
-create table categoriaprofessionale
-(
-    idprofessione int auto_increment
-        primary key,
-    area          varchar(150) not null,
-    sotto_area    varchar(150) null,
-    categoria     varchar(150) null
-);
+
 
 INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Analista Programmatore');
 INSERT INTO jobint.categoriaprofessionale (area, sotto_area, categoria) VALUES ('It e digital', 'Analisi / Sviluppo Software / Web', 'Analista software');
