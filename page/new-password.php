@@ -1,7 +1,7 @@
 <?php require_once "controllerUserData.php"; ?>
 <?php
 $email = $_SESSION['email'];
-if($email == false){
+if($email == false) {
     header('Location: index.php');
 }
 ?>
@@ -20,27 +20,27 @@ if($email == false){
             <form action="new-password.php" method="POST" autocomplete="off">
                 <h2 class="text-center">New Password</h2>
                 <?php
-                if(isset($_SESSION['info'])){
+                if(isset($_SESSION['info'])) {
                     ?>
                     <div class="alert alert-success text-center">
                         <?php echo $_SESSION['info']; ?>
                     </div>
                     <?php
                 }
-                ?>
+?>
                 <?php
-                if(count($errors) > 0){
-                    ?>
+if(count($errors) > 0) {
+    ?>
                     <div class="alert alert-danger text-center">
                         <?php
-                        foreach($errors as $showerror){
-                            echo $showerror;
-                        }
-                        ?>
+        foreach($errors as $showerror) {
+            echo $showerror;
+        }
+    ?>
                     </div>
                     <?php
-                }
-                ?>
+}
+?>
                 <div class="form-group">
                     <input class="form-control" type="password" name="password" placeholder="Create new password" required>
                 </div>

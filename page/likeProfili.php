@@ -2,8 +2,8 @@
 session_start();
 include "../db/config.php";
 $username = $_SESSION['username'];
-$email= $_SESSION['email'];
-$idAzienda= $_SESSION['idAzienda'];
+$email = $_SESSION['email'];
+$idAzienda = $_SESSION['idAzienda'];
 
 ?>
 <html lang="it">
@@ -35,9 +35,9 @@ and professione.idlavoratore1=`like`.idLavoratore";
 $result = mysqli_query($conn, $sql);
 $queryResult = mysqli_num_rows($result);
 if ($queryResult > 0) {
-while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {
 
-echo "<div style='text-align: center'>
+        echo "<div style='text-align: center'>
     &ensp;
     <h3>" . $row["nome"] . " " . $row["cognome"] . "</h3>
 
@@ -49,7 +49,8 @@ echo "<div style='text-align: center'>
     </form>
 </div>";
 
-}} ?>
+    }
+} ?>
 
 </body>
 </html>

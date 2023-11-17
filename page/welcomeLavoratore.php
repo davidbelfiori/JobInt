@@ -25,9 +25,9 @@ if (!isset($_SESSION['username'],$_SESSION['email'])) {
 
 
 $username = $_SESSION['username'];
-$email= $_SESSION['email'];
+$email = $_SESSION['email'];
 
-$sql="select * from user,user_image,curriculum,lavoratore,professione,indirizzo
+$sql = "select * from user,user_image,curriculum,lavoratore,professione,indirizzo
 where user.username='$username' and user.email='$email'
 and user.iduser=lavoratore.idUser1
 and user_image.idUser1=user.iduser
@@ -35,14 +35,14 @@ and lavoratore.idlavoratore=curriculum.idLavoratore1
 and indirizzo.idlavoratore1=lavoratore.idlavoratore
 and professione.idlavoratore1=lavoratore.idlavoratore
 ";
-$res = mysqli_query($conn,$sql);
-$rescheck= mysqli_num_rows($res);
+$res = mysqli_query($conn, $sql);
+$rescheck = mysqli_num_rows($res);
 
-if($rescheck>0){
-    while ($row = mysqli_fetch_assoc($res)){
-        $_SESSION['idlavoratore']=$row['idlavoratore'];
-        if(isset($_POST['view_pdf'])){
-            $file_name=$row['pdf_url'];
+if($rescheck > 0) {
+    while ($row = mysqli_fetch_assoc($res)) {
+        $_SESSION['idlavoratore'] = $row['idlavoratore'];
+        if(isset($_POST['view_pdf'])) {
+            $file_name = $row['pdf_url'];
 
             header("content-type: application/pdf");
             readfile("uploads/curriculum/$file_name");
@@ -138,7 +138,8 @@ if($rescheck>0){
 
 
 
-    <?php }} ?>
+    <?php }
+    } ?>
 
 
 </body>
