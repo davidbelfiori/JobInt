@@ -2,8 +2,7 @@
 
 include('../db/database_connection.php');
 include "../db/config.php";
-if(isset($_POST["chat_message_id"]))
-{
+if(isset($_POST["chat_message_id"])) {
     $query = "
 	UPDATE chat_message 
 	SET status = '2' 

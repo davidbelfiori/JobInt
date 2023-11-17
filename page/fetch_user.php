@@ -7,23 +7,23 @@ include "../db/database_connection.php";
 session_start();
 
 
- $res1=  mysqli_query($conn,"select * from user where iduser='".$_SESSION['user_id']."'");
-$row=mysqli_fetch_assoc($res1);
-if($row['typeuser']=='azienda'){
+$res1 =  mysqli_query($conn, "select * from user where iduser='".$_SESSION['user_id']."'");
+$row = mysqli_fetch_assoc($res1);
+if($row['typeuser'] == 'azienda') {
     $query = "
 SELECT * FROM `like`,lavoratore,user 
 WHERE  lavoratore.idlavoratore=`like`.idLavoratore and iduser = lavoratore.idUser1 and `like`.idAzienda = '".$_SESSION['idAzienda']."' 
 ";
-}else{
+} else {
 
-$query="
+    $query = "
     select *
     from `like`,azienda,user
 where `like`.idAzienda=azienda.idAzienda and iduser=azienda.idUser1 and idLavoratore='".$_SESSION['idlavoratore']."' ;";
 }
 
 
-$result= mysqli_query($conn,$query);
+$result = mysqli_query($conn, $query);
 
 
 $output = '
@@ -37,19 +37,16 @@ $output = '
 
 
 
-while($row=mysqli_fetch_assoc($result)){
+while($row = mysqli_fetch_assoc($result)) {
 
 
     $status = '';
     $current_timestamp = strtotime(date("Y-m-d H:i:s") . '- 10 second');
     $current_timestamp = date('Y-m-d H:i:s', $current_timestamp);
     $user_last_activity = fetch_user_last_activity($row['iduser'], $conn);
-    if($user_last_activity > $current_timestamp)
-    {
+    if($user_last_activity > $current_timestamp) {
         $status = '<span class="label label-success">Online</span>';
-    }
-    else
-    {
+    } else {
         $status = '<span class="label label-danger">Offline</span>';
     }
 
@@ -66,4 +63,3 @@ while($row=mysqli_fetch_assoc($result)){
 
 $output .= '</table>';
 echo $output;
-?>

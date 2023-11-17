@@ -15,18 +15,18 @@
                 <h2 class="text-center">Hai dimenticato la Password</h2>
                 <p class="text-center">Inserisci il tuo indirizzo mail</p>
                 <?php
-                if(count($errors) > 0){
+                if(count($errors) > 0) {
                     ?>
                     <div class="alert alert-danger text-center">
                         <?php
-                        foreach($errors as $error){
+                        foreach($errors as $error) {
                             echo $error;
                         }
-                        ?>
+                    ?>
                     </div>
                     <?php
                 }
-                ?>
+?>
                 <div class="form-group">
                     <input class="form-control" type="email" name="email" placeholder="Enter email address" required value="<?php echo $email ?>">
                 </div>

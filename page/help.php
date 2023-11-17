@@ -1,38 +1,41 @@
 <?php
 include "validate_email.php";
 
-if (isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $subject=$_POST['subject'];
-    $problema=$_POST['problema'];
+    $subject = $_POST['subject'];
+    $problema = $_POST['problema'];
 
 
 
-    if(ValidateEmail($email)==='valid'){
+    if(ValidateEmail($email) === 'valid') {
 
-    $to="jobint.help@gmail.com";
+        $to = "jobint.help@gmail.com";
 
-    $headers="Form:".$email;
-    $message="Hai ricevuto una email da ".$username.".\n\n ".$problema;
-    
-    if(isset($username) and isset($email) and isset($subject) and isset($problema)){
-        if(mail($to,$subject,$message,$headers)) {
+        $headers = "Form:".$email;
+        $message = "Hai ricevuto una email da ".$username.".\n\n ".$problema;
 
-            $subject = "Jobint Help";
-            $message = "Grazie per averci contattato" .$username.".\n\n La tua richiesta:  ".$problema."\n\n Con i tuoi feedback rendiamo JobInt migliore";
-            $sender = "From: jobint.help@gmail.com ";
-            if(mail($email, $subject, $message, $sender)){
-                header("Location: index.php");
-                exit();}
-            }else{
-            echo "<script> alert('errore1')</script>";} 
-    }else{
-        echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";}
-}else{
-    echo "<script> alert('email non valida'); </script>";
-    //header("Location: help.php");
+        if(isset($username) and isset($email) and isset($subject) and isset($problema)) {
+            if(mail($to, $subject, $message, $headers)) {
+
+                $subject = "Jobint Help";
+                $message = "Grazie per averci contattato" .$username.".\n\n La tua richiesta:  ".$problema."\n\n Con i tuoi feedback rendiamo JobInt migliore";
+                $sender = "From: jobint.help@gmail.com ";
+                if(mail($email, $subject, $message, $sender)) {
+                    header("Location: index.php");
+                    exit();
+                }
+            } else {
+                echo "<script> alert('errore1')</script>";
+            }
+        } else {
+            echo "<script> alert('si prega di compilare gli spazi vuoti')</script>";
+        }
+    } else {
+        echo "<script> alert('email non valida'); </script>";
+        //header("Location: help.php");
     }
 
 }

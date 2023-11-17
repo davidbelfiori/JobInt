@@ -1,109 +1,112 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.nav {
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: baseline;
+  margin-left: 150px;
+}
+.logo-container {
+  text-align: right;
+  width: 50%;
+}
+.title-container {
+  text-align: left;
+  width: 50%;
+}
+.title {
+  font-size: 55px;
+  font-family: "Lato", sans-serif;
+}
+.logo {
+  width: 50%;
+}
+.content {
+  margin-top: 25px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+.image-container {
+  width: 50%;
+  text-align: left;
+  margin-left: 80px;
+}
+.content-image {
+  width: 700px;
+  height: 100%;
+  margin-right: 100px;
+}
+.form-container {
+  text-align: center;
+  margin-left: 100px;
+}
+.form {
+  background-color: rgb(240, 240, 240);
+  border-radius: 30px;
+  width: 450px;
+  height: 400px;
+  text-align: center;
+}
+.input-group {
+  width: 400px;
+  margin-left: 20px;
+}
+.input-group-1 {
+  width: 400px;
+  margin-left: 20px;
+  height: 50px;
+}
+.input-group-1 textarea {
+  width: 100%;
+  height: 70px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border-style: none;
+  resize: none;
+}
+input {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  border-radius: 40px;
+  border-style: none;
+}
+.button {
+  margin-top: 50px;
+  width: 125px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: black;
+  border-style: none;
+}
+.text {
+  font-size: 12px;
+  font-family:
+    Segoe UI,
+    Frutiger,
+    Frutiger Linotype,
+    Dejavu Sans,
+    Helvetica Neue,
+    Arial,
+    sans-serif;
+}
+.button-a {
+  color: white;
+  text-decoration: none;
+}
+.text-a {
+  color: black;
+}
 
-
-body{
-    padding: 0;
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-}
-.nav{
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content:baseline;
-    margin-left: 150px;
-}
-.logo-container{
-    text-align: right;
-    width: 50%;
-}
-.title-container{
-    text-align: left;
-    width: 50%;
-}
-.title{
-    font-size: 55px;
-    font-family: "Lato",sans-serif;
-}
-.logo{
-    width: 50%;
-}
-.content{
-    margin-top: 25px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-}
-.image-container{
-    width: 50%;
-    text-align: left;
-    margin-left: 80px;
-
-}
-.content-image{
-    width: 700px;
-    height: 100%;
-    margin-right: 100px;
-}
-.form-container{
-    text-align: center;
-    margin-left: 100px;
-}
-.form{
-    background-color: rgb(240, 240, 240);
-    border-radius: 30px;
-    width: 450px;
-    height: 400px;
-    text-align: center;
-}
-.input-group{
-    width: 400px;
-    margin-left: 20px;
-}
-.input-group-1{
-    width: 400px;
-    margin-left: 20px;
-    height: 50px;
-}
-.input-group-1 textarea{
-    width: 100%;
-    height: 70px;
-    margin-top: 20px;
-    border-radius: 10px;
-    border-style: none;
-    resize: none;
-}
-input{
-    width: 100%;
-    height: 50px;
-    margin-top: 20px;
-    border-radius: 40px;
-    border-style: none;
-}
-.button{
-    margin-top: 50px;
-    width: 125px;
-    height: 40px;
-    border-radius: 50px;
-    background-color: black;
-    border-style: none;
-}
-.text{
-    font-size: 12px;
-    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif,
-}
-.button-a{
-    color: white;
-    text-decoration: none;
-}
-.text-a{
-    color: black;
-}
-
-
-p{
-    font-family: 'Open Sans', sans-serif;
+p {
+  font-family: "Open Sans", sans-serif;
 }
